@@ -1,0 +1,555 @@
+# 下载 Terminal Electron
+
+根据您的设备信息，我们为您推荐最适合的版本。
+
+## 快速下载
+
+<div class="quick-download-section">
+  <div class="download-card">
+    <div class="platform-info">
+      <div class="platform-icon">
+        <img id="platform-icon" src="/images/windows.png" alt="检测中..." width="48" height="48" />
+      </div>
+      <div class="platform-details">
+        <h3 id="platform-name">检测中...</h3>
+        <p id="platform-desc">正在检测您的设备...</p>
+      </div>
+    </div>
+    <div class="download-actions">
+      <div class="download-section">
+        <div class="architecture-selector">
+          <label class="arch-option">
+            <input type="radio" name="architecture" value="x64" checked>
+            <span class="arch-label">x64</span>
+          </label>
+          <label class="arch-option">
+            <input type="radio" name="architecture" value="arm64">
+            <span class="arch-label">ARM64</span>
+          </label>
+        </div>
+        <a href="https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe" class="primary-download-btn">
+          立即下载
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+## 所有可用版本
+
+### Windows
+
+#### Windows x64
+- **文件大小**: ~120MB
+- **系统要求**: Windows 10 或更高版本
+- **下载链接**: 
+  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe)
+  - [直接下载](https://releases.terminal-electron.com/windows/x64/Terminal-Electron-Setup-1.0.0.exe)
+
+#### Windows ARM64
+- **文件大小**: ~110MB
+- **系统要求**: Windows 11 ARM64
+- **下载链接**:
+  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.exe)
+  - [直接下载](https://releases.terminal-electron.com/windows/arm64/Terminal-Electron-1.0.0-arm64.exe)
+
+### macOS
+
+#### macOS Intel (x64)
+- **文件大小**: ~130MB
+- **系统要求**: macOS 10.15 (Catalina) 或更高版本
+- **下载链接**:
+  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.dmg)
+  - [直接下载](https://releases.terminal-electron.com/macos/x64/Terminal-Electron-1.0.0-x64.dmg)
+
+#### macOS Apple Silicon (ARM64)
+- **文件大小**: ~125MB
+- **系统要求**: macOS 11.0 (Big Sur) 或更高版本
+- **下载链接**:
+  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.dmg)
+  - [直接下载](https://releases.terminal-electron.com/macos/arm64/Terminal-Electron-1.0.0-arm64.dmg)
+
+#### macOS Universal (Intel + Apple Silicon)
+- **文件大小**: ~150MB
+- **系统要求**: macOS 11.0 (Big Sur) 或更高版本
+- **下载链接**:
+  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-universal.dmg)
+  - [直接下载](https://releases.terminal-electron.com/macos/universal/Terminal-Electron-1.0.0-universal.dmg)
+
+### Linux
+
+#### Linux x64
+- **文件大小**: ~100MB
+- **系统要求**: Ubuntu 18.04+, CentOS 7+, Debian 9+
+- **下载链接**:
+  - [AppImage](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage)
+  - [Debian Package](https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron_1.0.0_amd64.deb)
+  - [RPM Package](https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron-1.0.0.x86_64.rpm)
+
+#### Linux ARM64
+- **文件大小**: ~95MB
+- **系统要求**: Ubuntu 20.04+, Debian 11+
+- **下载链接**:
+  - [AppImage](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.AppImage)
+  - [Debian Package](https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron_1.0.0_arm64.deb)
+
+## 安装说明
+
+### Windows 安装
+
+1. **下载安装程序**
+   - 下载对应的 `.exe` 文件
+   - 文件大小约 120MB
+
+2. **运行安装程序**
+   - 双击下载的 `.exe` 文件
+   - 按照安装向导的提示进行安装
+   - 建议使用默认安装路径
+
+3. **启动应用**
+   - 安装完成后，从开始菜单启动
+   - 或在桌面找到应用图标
+
+### macOS 安装
+
+1. **下载 DMG 文件**
+   - 下载对应的 `.dmg` 文件
+   - 文件大小约 125-150MB
+
+2. **安装应用**
+   - 双击 `.dmg` 文件打开
+   - 将应用拖拽到 Applications 文件夹
+   - 或双击应用图标直接运行
+
+3. **首次运行**
+   - 可能需要在"系统偏好设置 > 安全性与隐私"中允许运行
+   - 右键点击应用，选择"打开"
+
+### Linux 安装
+
+#### AppImage 方式（推荐）
+```bash
+# 下载 AppImage 文件
+wget https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage
+
+# 添加执行权限
+chmod +x Terminal-Electron-1.0.0-x64.AppImage
+
+# 运行应用
+./Terminal-Electron-1.0.0-x64.AppImage
+```
+
+#### Debian/Ubuntu 安装
+```bash
+# 下载 deb 包
+wget https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron_1.0.0_amd64.deb
+
+# 安装
+sudo dpkg -i terminal-electron_1.0.0_amd64.deb
+
+# 修复依赖（如果需要）
+sudo apt-get install -f
+```
+
+#### CentOS/RHEL 安装
+```bash
+# 下载 rpm 包
+wget https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron-1.0.0.x86_64.rpm
+
+# 安装
+sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
+```
+
+## 系统要求
+
+### 最低要求
+- **操作系统**: Windows 10 / macOS 10.15 / Ubuntu 18.04
+- **处理器**: 双核 2.0GHz
+- **内存**: 4GB RAM
+- **存储**: 2GB 可用磁盘空间
+- **网络**: 稳定的互联网连接
+
+### 推荐配置
+- **操作系统**: Windows 11 / macOS 12.0 / Ubuntu 20.04
+- **处理器**: 四核 2.5GHz 或更高
+- **内存**: 8GB RAM
+- **存储**: 5GB 可用磁盘空间
+- **网络**: 高速互联网连接
+
+## 更新说明
+
+### 自动更新
+- Terminal Electron 支持自动更新
+- 新版本发布时会自动提示
+- 可选择立即更新或稍后更新
+
+### 手动更新
+1. 访问 [GitHub Releases](https://github.com/your-username/terminal-electron/releases)
+2. 下载最新版本
+3. 按照安装说明进行更新
+
+## 故障排除
+
+### 下载问题
+- **下载速度慢**: 尝试使用镜像站点
+- **下载失败**: 检查网络连接，重试下载
+- **文件损坏**: 重新下载文件
+
+### 安装问题
+- **权限不足**: 使用管理员权限运行安装程序
+- **依赖缺失**: 安装必要的系统依赖
+- **杀毒软件拦截**: 将应用添加到白名单
+
+### 运行问题
+- **启动失败**: 检查系统要求，查看错误日志
+- **性能问题**: 关闭其他应用，检查系统资源
+- **连接问题**: 检查网络设置，防火墙配置
+
+## 支持渠道
+
+### 获取帮助
+- **文档**: 查看 [使用指南](./usage.md) 和 [配置指南](./configuration.md)
+- **GitHub Issues**: [报告问题](https://github.com/your-username/terminal-electron/issues)
+- **Discord**: [加入社区](https://discord.gg/terminal-electron)
+- **邮箱**: support@terminal-electron.com
+
+### 反馈建议
+- **功能建议**: 在 GitHub Discussions 中提出
+- **Bug 报告**: 在 GitHub Issues 中报告
+- **用户体验**: 通过应用内反馈功能
+
+---
+
+<script>
+// 简化的设备检测脚本
+(function() {
+  'use strict';
+  
+  // 下载链接配置
+  const downloadLinks = {
+    'windows-x64': {
+      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe',
+      size: '120MB'
+    },
+    'windows-arm64': {
+      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.exe',
+      size: '110MB'
+    },
+    'macos-x64': {
+      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.dmg',
+      size: '130MB'
+    },
+    'macos-arm64': {
+      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.dmg',
+      size: '125MB'
+    },
+    'linux-x64': {
+      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage',
+      size: '100MB'
+    },
+    'linux-arm64': {
+      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.AppImage',
+      size: '95MB'
+    }
+  };
+  
+  // 简单的设备检测
+  function detectDevice() {
+    const userAgent = navigator.userAgent;
+    
+    let os = 'windows';
+    let osName = 'Windows';
+    let iconSrc = '/images/windows.png';
+    
+    // 检测操作系统
+    if (userAgent.includes('Mac')) {
+      os = 'macos';
+      osName = 'macOS';
+      iconSrc = '/images/mac.png';
+    } else if (userAgent.includes('Linux')) {
+      os = 'linux';
+      osName = 'Linux';
+      iconSrc = '/images/linux.png';
+    }
+    
+    return {
+      os,
+      osName,
+      iconSrc
+    };
+  }
+  
+  // 获取当前选择的架构
+  function getSelectedArchitecture() {
+    const selectedArch = document.querySelector('input[name="architecture"]:checked');
+    return selectedArch ? selectedArch.value : 'x64';
+  }
+  
+  // 更新下载链接
+  function updateDownloadLink() {
+    const deviceInfo = window.currentDeviceInfo;
+    if (!deviceInfo) return;
+    
+    const arch = getSelectedArchitecture();
+    const key = `${deviceInfo.os}-${arch}`;
+    const downloadInfo = downloadLinks[key] || downloadLinks['windows-x64'];
+    
+    const downloadLink = document.querySelector('.primary-download-btn');
+    const fileSizeEl = document.getElementById('file-size');
+    
+    if (downloadLink) {
+      downloadLink.href = downloadInfo.url;
+    }
+    
+    if (fileSizeEl) {
+      fileSizeEl.textContent = `文件大小：约 ${downloadInfo.size}`;
+    }
+  }
+  
+  // 显示加载状态
+  function showLoading() {
+    const platformNameEl = document.getElementById('platform-name');
+    const platformDescEl = document.getElementById('platform-desc');
+    
+    if (platformNameEl) {
+      platformNameEl.textContent = '检测中...';
+      platformNameEl.classList.add('loading');
+    }
+    
+    if (platformDescEl) {
+      platformDescEl.textContent = '正在检测您的设备...';
+      platformDescEl.classList.add('loading');
+    }
+  }
+
+  // 更新界面
+  function updateUI(deviceInfo) {
+    const platformIconEl = document.getElementById('platform-icon');
+    const platformNameEl = document.getElementById('platform-name');
+    const platformDescEl = document.getElementById('platform-desc');
+    
+    // 移除加载动画
+    if (platformNameEl) {
+      platformNameEl.classList.remove('loading');
+    }
+    if (platformDescEl) {
+      platformDescEl.classList.remove('loading');
+    }
+    
+    // 更新平台图标
+    if (platformIconEl) {
+      platformIconEl.src = deviceInfo.iconSrc;
+      platformIconEl.alt = deviceInfo.osName;
+    }
+    
+    // 更新平台名称
+    if (platformNameEl) {
+      platformNameEl.textContent = deviceInfo.osName;
+    }
+    
+    // 更新平台描述
+    if (platformDescEl) {
+      platformDescEl.textContent = `选择适合您设备的架构版本`;
+    }
+    
+    // 更新下载链接
+    updateDownloadLink();
+  }
+  
+  // 初始化
+  function init() {
+    // 先显示加载状态
+    showLoading();
+    
+    // 模拟检测延迟，然后更新界面
+    setTimeout(() => {
+      const deviceInfo = detectDevice();
+      window.currentDeviceInfo = deviceInfo; // 保存到全局变量
+      updateUI(deviceInfo);
+    }, 500);
+    
+    // 监听架构选择变化
+    document.addEventListener('change', function(e) {
+      if (e.target.name === 'architecture') {
+        updateDownloadLink();
+      }
+    });
+  }
+  
+  // 页面加载完成后初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+<style>
+/* 快速下载区域样式 */
+.quick-download-section {
+  margin: 30px 0;
+}
+
+.download-card {
+  background: white;
+  border: 2px solid #e9ecef;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  display:flex;
+  justify-content:space-between;
+}
+
+.download-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+}
+
+.platform-info {
+  display: flex;
+  /* align-items: center; */
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.platform-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.platform-icon img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.platform-details h3 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.platform-details p {
+  margin: 0 0 4px 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.download-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.download-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.architecture-selector {
+  display: flex;
+  gap: 15px;
+}
+
+.arch-option {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.arch-option:hover {
+  background-color: #f8f9fa;
+}
+
+.arch-option input[type="radio"] {
+  transform: scale(0.8);
+  margin: 0;
+}
+
+.arch-option .arch-label {
+  font-size: 14px;
+  color: #495057;
+  font-weight: 500;
+}
+
+.arch-option input[type="radio"]:checked + .arch-label {
+  color: #667eea;
+  font-weight: 600;
+}
+
+.download-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* 加载动画 */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.file-info span {
+  padding: 5px 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .platform-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .download-actions {
+    justify-content: center;
+  }
+  
+  .download-section {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .architecture-selector {
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .file-info {
+    justify-content: center;
+  }
+}
+</style> 

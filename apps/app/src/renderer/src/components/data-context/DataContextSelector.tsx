@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import { ChevronDown, User, Users, Loader2 } from 'lucide-react';
@@ -21,7 +21,7 @@ interface Team {
 
 export const DataContextSelector = observer(() => {
   const navigate = useNavigate();
-  const { currentMode, currentTeamId, currentTeamName, switchToPersonal, switchToTeam, isLoading } = useDataContext();
+  const { currentMode, currentTeamId, currentTeamName, switchToPersonal, switchToTeam } = useDataContext();
   const [teams, setTeams] = useState<Team[]>([]);
   const [isLoadingTeams, setIsLoadingTeams] = useState(false);
 
@@ -31,7 +31,7 @@ export const DataContextSelector = observer(() => {
       setIsLoadingTeams(true);
       try {
         const userTeams = await teamsApi.getMyTeams();
-        setTeams(userTeams);
+        setTeams(userTeams as unknown as Team[]);
       } catch (error) {
         console.error('加载团队列表失败:', error);
       } finally {
@@ -48,13 +48,13 @@ export const DataContextSelector = observer(() => {
 
   // 处理切换到团队模式
   const handleSwitchToTeam = async (team: Team) => {
-    await switchToTeam(team.id, team.name);
+    await switchToTeam(team.id);
     navigate(`/teams/${team.id}`);
   };
 
   // 获取当前显示的文本
   const getCurrentDisplayText = () => {
-    if (isLoading) {
+    if (isLoadingTeams) {
       return '加载中...';
     }
     
@@ -71,7 +71,7 @@ export const DataContextSelector = observer(() => {
 
   // 获取当前图标
   const getCurrentIcon = () => {
-    if (isLoading) {
+    if (isLoadingTeams) {
       return <Loader2 className="h-4 w-4 animate-spin" />;
     }
     
@@ -92,7 +92,7 @@ export const DataContextSelector = observer(() => {
         <Button 
           variant="outline" 
           className="min-w-[120px] justify-between"
-          disabled={isLoading}
+          disabled={isLoadingTeams}
         >
           <div className="flex items-center gap-2">
             {getCurrentIcon()}

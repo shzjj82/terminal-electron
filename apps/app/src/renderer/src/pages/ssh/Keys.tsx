@@ -12,7 +12,7 @@ import CreateKeyDropdown from '@renderer/components/keys/CreateKeyDropdown';
 import { useTeamPermissions } from '@/contexts/TeamPermissionContext';
 
 function Keys() {
-  const { canCreateData, canEditData, canDeleteData } = useTeamPermissions();
+  const { canCreateData } = useTeamPermissions();
   
   const handleCreateKey = (mode: 'password' | 'file' | 'content') => {
     keysStore.setCreateKeyMode(mode);

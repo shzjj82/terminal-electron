@@ -2,6 +2,15 @@
 node_modules/
 **/node_modules/
 
+# Yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 # Build outputs
 /dist/
 /build/
@@ -79,6 +88,20 @@ temp/
 tmp/
 **/temp/
 **/tmp/
+
+# Turbo
+.turbo/
+**/.turbo/
+.turbo
+.turbo/**
+
+# Documentation build outputs
+docs/.vuepress/dist/
+docs/.temp/
+docs/.cache/
+**/docs/.vuepress/dist/
+**/docs/.temp/
+**/docs/.cache/
 
 # Other
 *.tgz

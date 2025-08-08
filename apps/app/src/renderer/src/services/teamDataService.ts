@@ -2,7 +2,7 @@ import { serversStore } from '@/stores/serversStore';
 import { keysStore } from '@/stores/keysStore';
 import { portForwardingStore } from '@/stores/portForwardingStore';
 import { syncApi } from '@/api/sync';
-import { teamsApi } from '@/api/teams';
+// import { teamsApi } from '@/api/teams';
 
 class TeamDataService {
   private currentTeamId: string | null = null;

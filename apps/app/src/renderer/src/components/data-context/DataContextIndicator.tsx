@@ -1,9 +1,7 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useDataContext } from './DataContextProvider';
 import { Badge } from '@/components/ui/badge';
 import { User, Users } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 export const DataContextIndicator = observer(() => {
   const { currentMode, currentTeamName } = useDataContext();

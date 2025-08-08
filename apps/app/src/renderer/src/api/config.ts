@@ -1,14 +1,33 @@
 import axios from 'axios';
 
-// API基础配置
-const API_BASE_URL = process.env.NODE_ENV === 'development' 
-  ? 'http://localhost:3000' 
-  : 'https://your-production-api.com';
+// 从环境变量文件读取配置
+const loadEnvConfig = () => {
+  try {
+    // 在 Electron 环境中，可以通过 IPC 从主进程获取环境变量
+    // 或者直接从 process.env 读取
+    const isDev = process.env.NODE_ENV === 'development';
+    
+    return {
+      API_BASE_URL: isDev 
+        ? process.env.API_BASE_URL || 'http://localhost:3000'
+        : process.env.API_BASE_URL || 'http://localhost:3000',
+      API_TIMEOUT: parseInt(process.env.API_TIMEOUT || '10000'),
+    };
+  } catch (error) {
+    console.warn('Failed to load env config, using defaults:', error);
+    return {
+      API_BASE_URL: 'http://localhost:3000',
+      API_TIMEOUT: 10000,
+    };
+  }
+};
+
+const config = loadEnvConfig();
 
 // 创建axios实例
 export const apiClient = axios.create({
-  baseURL: API_BASE_URL,
-  timeout: 10000,
+  baseURL: config.API_BASE_URL,
+  timeout: config.API_TIMEOUT,
   headers: {
     'Content-Type': 'application/json',
   },

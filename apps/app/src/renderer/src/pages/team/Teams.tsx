@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { InputOTP, InputOTPGroup, InputOTPSlot } from '@/components/ui/input-otp';
-import { Plus, Users, Trash2, Copy, UserCheck, Settings } from 'lucide-react';
+import { Plus, Users, UserCheck } from 'lucide-react';
 import { teamsApi, type TeamData, type CreateTeamData, type JoinTeamData } from '@/api/teams';
 import { useNavigate } from 'react-router-dom';
 import { EmptyState } from '@/components/empty';

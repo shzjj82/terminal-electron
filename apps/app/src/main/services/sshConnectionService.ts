@@ -286,24 +286,25 @@ class SSHConnectionService {
     });
   }
 
-  private getConnectionDuration(connectionId: string): string {
-    const connection = this.connections.get(connectionId);
-    if (connection && connection.connectTime) {
-      const duration = Date.now() - connection.connectTime;
-      const seconds = Math.floor(duration / 1000);
-      const minutes = Math.floor(seconds / 60);
-      const hours = Math.floor(minutes / 60);
+  // 暂时注释掉未使用的方法
+  // private getConnectionDuration(connectionId: string): string {
+  //   const connection = this.connections.get(connectionId);
+  //   if (connection && connection.connectTime) {
+  //     const duration = Date.now() - connection.connectTime;
+  //     const seconds = Math.floor(duration / 1000);
+  //     const minutes = Math.floor(seconds / 60);
+  //     const hours = Math.floor(minutes / 60);
 
-      if (hours > 0) {
-        return `${hours}小时${minutes % 60}分钟${seconds % 60}秒`;
-      } else if (minutes > 0) {
-        return `${minutes}分钟${seconds % 60}秒`;
-      } else {
-        return `${seconds}秒`;
-      }
-    }
-    return '未知';
-  }
+  //     if (hours > 0) {
+  //       return `${hours}小时${minutes % 60}分钟${seconds % 60}秒`;
+  //     } else if (minutes > 0) {
+  //       return `${minutes}分钟${seconds % 60}秒`;
+  //     } else {
+  //       return `${seconds}秒`;
+  //     }
+  //   }
+  //   return '未知';
+  // }
 }
 
 export const sshConnectionService = new SSHConnectionService(); 

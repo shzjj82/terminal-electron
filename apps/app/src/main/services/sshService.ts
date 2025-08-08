@@ -59,14 +59,14 @@ ipcMain.handle('ssh.startSession', async (event, config) => {
   });
 });
 
-ipcMain.handle('ssh.write', (event, sessionId, data) => {
+ipcMain.handle('ssh.write', (_event, sessionId, data) => {
   const session = sessions.get(sessionId);
   if (session) {
     session.stream.write(data);
   }
 });
 
-ipcMain.handle('ssh.close', (event, sessionId) => {
+ipcMain.handle('ssh.close', (_event, sessionId) => {
   const session = sessions.get(sessionId);
   if (session) {
     session.conn.end();

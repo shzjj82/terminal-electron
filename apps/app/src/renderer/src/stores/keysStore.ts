@@ -168,10 +168,10 @@ class KeysStore {
 
       // 同步到云端
       if (authStore.isAuthenticated) {
-        const { DataService } = await import('../services/dataService');
-        const namespace = DataService.getCurrentDataContext();
+        // const { DataService } = await import('../services/dataService');
+        // const namespace = DataService.getCurrentDataContext();
         const { syncApi } = await import('@/api/sync');
-        const createdKey = await syncApi.createKey(keyData, namespace);
+        const createdKey = await syncApi.createKey(keyData as any);
         this.addKeyFromCloud(createdKey);
       } else {
         // 本地创建
@@ -197,8 +197,8 @@ class KeysStore {
       if (authStore.isAuthenticated) {
         const { syncApi } = await import('@/api/sync');
         const { DataService } = await import('../services/dataService');
-        const namespace = DataService.getCurrentDataContext();
-        await syncApi.deleteKey(keyId, namespace);
+        // const namespace = DataService.getCurrentDataContext();
+        await syncApi.deleteKey(keyId);
       }
 
       this.keys = this.keys.filter(k => k.id !== keyId);
@@ -229,9 +229,9 @@ class KeysStore {
       // 同步到云端
       if (authStore.isAuthenticated) {
         const { syncApi } = await import('@/api/sync');
-        const { DataService } = await import('../services/dataService');
-        const namespace = DataService.getCurrentDataContext();
-        await syncApi.updateKey(keyId, updates, namespace);
+        // const { DataService } = await import('../services/dataService');
+        // const namespace = DataService.getCurrentDataContext();
+        await syncApi.updateKey(keyId, updates);
       }
 
       this.saveData();

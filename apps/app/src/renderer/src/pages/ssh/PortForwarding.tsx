@@ -14,7 +14,7 @@ import {
 import { useTeamPermissions } from '@/contexts/TeamPermissionContext';
 
 function PortForwarding() {
-  const { canCreateData, canEditData, canDeleteData, canUseData } = useTeamPermissions();
+  const { canCreateData } = useTeamPermissions();
   
   // 使用 hooks 来管理不同的逻辑
   const { handleStartForward, handleStopForward, handleDeleteForward } = usePortForwardingActions();

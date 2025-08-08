@@ -20,7 +20,7 @@ export const usePortForwardList = ({
   onStart,
   onStop
 }: UsePortForwardListProps): UsePortForwardListReturn => {
-  const { canEditData, canDeleteData, canUseData } = useTeamPermissions();
+  const { canEditData, canDeleteData } = useTeamPermissions();
   
   const getActions = useCallback((forward: any) => {
     const actions: any[] = [];

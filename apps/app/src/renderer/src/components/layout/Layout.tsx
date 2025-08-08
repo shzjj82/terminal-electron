@@ -3,7 +3,6 @@ import { observer } from 'mobx-react-lite';
 import { useState, useEffect } from 'react';
 import { 
   ChevronDown,
-  Plus,
   Terminal,
   X,
   Minus,
@@ -11,8 +10,7 @@ import {
   LogOut,
   Settings,
   User as UserIcon,
-  HardDrive,
-  RefreshCw
+  HardDrive
 } from 'lucide-react';
 import { teamsApi } from '@/api/teams';
 import { Button } from '@/components/ui/button';
@@ -28,25 +26,13 @@ import { getTerminalStore } from '@/stores/globalStores';
 import { authStore } from '@/stores/authStore';
 import SessionDropdown from '@/components/terminal/SessionDropdown';
 import StatusIndicator from './StatusIndicator';
-import { DataService } from '@/services/dataService';
 import { DataContextSwitcher } from '@/components/data-context/DataContextSwitcher';
 import { DataContextIndicator } from '@/components/data-context/DataContextIndicator';
 
 const Layout = observer(() => {
   const navigate = useNavigate();
-  const [teams, setTeams] = useState<any[]>([]);
   // 检查是否为Mac平台
   const isMac = navigator.platform.toLowerCase().includes('mac');
-  
-  // 刷新数据
-  const handleRefreshData = async () => {
-    try {
-      const { DataService } = await import('@/services/dataService');
-      await DataService.initializeData();
-    } catch (error) {
-      console.error('数据刷新失败:', error);
-    }
-  };
 
   // 加载团队信息
   const loadTeams = async () => {

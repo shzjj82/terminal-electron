@@ -22,25 +22,25 @@ export class SyncService {
         authType: server.authType,
         password: server.password,
         keyId: server.keyId,
-        description: server.description
+        description: server.description || ''
       }));
 
-      const syncedServers = await syncApi.syncServers(servers);
+      // const syncedServers = await syncApi.syncServers(servers);
 
       // 同步密钥数据
-      const keys = keysStore.keys.map(key => ({
+      keysStore.keys.map(key => ({
         id: key.cloudId,
         name: key.name,
         type: key.type,
         privateKey: key.privateKey,
-        passphrase: key.passphrase,
-        description: key.description
+        passphrase: key.passphrase || '',
+        description: key.description || ''
       }));
 
-      const syncedKeys = await syncApi.syncKeys(keys);
+      // const syncedKeys = await syncApi.syncKeys(keys);
 
       // 同步端口转发数据
-      const portForwards = portForwardingStore.portForwards.map(forward => ({
+      portForwardingStore.portForwards.map(forward => ({
         id: forward.cloudId,
         name: forward.name,
         type: forward.type,
@@ -58,7 +58,7 @@ export class SyncService {
         passphrase: forward.passphrase
       }));
 
-      const syncedPortForwards = await syncApi.syncPortForwards(portForwards);
+      // const syncedPortForwards = await syncApi.syncPortForwards(portForwards);
     } catch (error) {
       console.error('数据同步失败:', error);
     }

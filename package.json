@@ -1,9 +1,47 @@
 {
-	"dependencies": {
-		"@types/ssh2": "^1.15.5",
-		"node-pty": "^1.0.0",
-		"ssh2": "^1.16.0",
-		"xterm": "^5.3.0",
-		"xterm-addon-fit": "^0.8.0"
-	}
+	"name": "terminal-electron",
+	"version": "1.0.0",
+	"description": "Electron-based SSH terminal application with NestJS backend",
+	"private": true,
+	"packageManager": "yarn@1.22.22",
+	"scripts": {
+		"dev": "turbo run dev",
+		"dev:app": "yarn workspace terminal dev",
+		"dev:service": "yarn workspace service start:dev",
+		"build": "turbo run build",
+		"build:app": "yarn workspace terminal build",
+		"build:service": "yarn workspace service build",
+		"build:electron": "node scripts/build-electron.js",
+		"build:electron:mac": "node scripts/build-electron.js mac",
+		"build:electron:win": "node scripts/build-electron.js win",
+		"build:electron:linux": "node scripts/build-electron.js linux",
+		"build:electron:all": "node scripts/build-electron.js all",
+		"build:electron:mac:arm64": "node scripts/build-electron.js mac arm64",
+		"build:electron:mac:x64": "node scripts/build-electron.js mac x64",
+		"build:electron:win:arm64": "node scripts/build-electron.js win arm64",
+		"build:electron:win:x64": "node scripts/build-electron.js win x64",
+		"build:electron:linux:arm64": "node scripts/build-electron.js linux arm64",
+		"build:electron:linux:x64": "node scripts/build-electron.js linux x64",
+		"build:electron:dev": "node scripts/build-electron.js mac arm64 development",
+		"build:electron:prod": "node scripts/build-electron.js mac arm64 production",
+		"lint": "turbo run lint",
+		"typecheck": "turbo run typecheck",
+		"format": "turbo run format",
+		"clean": "turbo run clean",
+		"docker:build": "docker-compose -f docker/docker-compose.yml --env-file env/production.env build",
+		"docker:up": "docker-compose -f docker/docker-compose.yml --env-file env/production.env up -d",
+		"docker:down": "docker-compose -f docker/docker-compose.yml --env-file env/production.env down",
+		"docker:logs": "docker-compose -f docker/docker-compose.yml --env-file env/production.env logs -f",
+		"docker:restart": "docker-compose -f docker/docker-compose.yml --env-file env/production.env restart",
+		    "docker:clean": "docker-compose -f docker/docker-compose.yml --env-file env/production.env down -v --remove-orphans",
+    "docs:dev": "cd docs && yarn docs:dev",
+    "docs:build": "cd docs && yarn docs:build",
+    "docs:preview": "cd docs && yarn docs:preview"
+	},
+	"devDependencies": {
+		"turbo": "^2.0.0"
+	},
+	"workspaces": [
+		"apps/*"
+	]
 }

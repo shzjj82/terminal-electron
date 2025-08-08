@@ -5,10 +5,22 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   main: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [externalizeDepsPlugin()],
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.BUILD_TARGET': JSON.stringify(process.env.BUILD_TARGET),
+      'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL),
+      'process.env.API_TIMEOUT': JSON.stringify(process.env.API_TIMEOUT)
+    }
   },
   preload: {
-    plugins: [externalizeDepsPlugin()]
+    plugins: [externalizeDepsPlugin()],
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.BUILD_TARGET': JSON.stringify(process.env.BUILD_TARGET),
+      'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL),
+      'process.env.API_TIMEOUT': JSON.stringify(process.env.API_TIMEOUT)
+    }
   },
   renderer: {
     resolve: {
@@ -21,6 +33,12 @@ export default defineConfig({
     server: {
       host: '0.0.0.0',
       port: 5173
+    },
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.BUILD_TARGET': JSON.stringify(process.env.BUILD_TARGET),
+      'process.env.API_BASE_URL': JSON.stringify(process.env.API_BASE_URL),
+      'process.env.API_TIMEOUT': JSON.stringify(process.env.API_TIMEOUT)
     }
   }
 })

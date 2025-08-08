@@ -1,12 +1,10 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { useDataContext } from './DataContextProvider';
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
-import { ChevronDown, User, Users, Settings } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { ChevronDown, User, Users } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { authStore } from '@/stores/authStore';
-import { useNavigate } from 'react-router-dom';
 
 export const DataContextSwitcher = observer(() => {
   const navigate = useNavigate();

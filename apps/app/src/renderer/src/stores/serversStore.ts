@@ -370,17 +370,7 @@ class ServersStore {
     }
   }
 
-  // 关闭终端会话
-  private async closeTerminalSession(serverId: string) {
-    try {
-      const { terminalStore } = await import('./terminalStore');
-      
-      // 关闭对应的终端会话
-      terminalStore.closeSessionByServerId(serverId);
-    } catch (error) {
-      console.error('Failed to close terminal session:', error);
-    }
-  }
+
 
   // 文件选择处理
   async selectKeyFile() {

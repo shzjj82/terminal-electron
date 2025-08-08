@@ -1,11 +1,9 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { observer } from 'mobx-react-lite';
 import { serversStore } from '@/stores/serversStore';
 import { keysStore } from '@/stores/keysStore';
 import { portForwardingStore } from '@/stores/portForwardingStore';
 import { authStore } from '@/stores/authStore';
-import { teamsApi } from '@/api/teams';
-import { updateDataContext } from '@/hooks/useDataContext';
 
 // 数据上下文类型
 interface DataContextType {

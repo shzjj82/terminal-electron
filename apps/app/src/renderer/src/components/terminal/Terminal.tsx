@@ -15,7 +15,7 @@ const Terminal: React.FC = observer(() => {
   const [currentServer, setCurrentServer] = useState<any>(null);
   const [sshSessionId, setSshSessionId] = useState<string | null>(null);
   const [hasAttemptedAutoConnect, setHasAttemptedAutoConnect] = useState(false);
-  const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
+  // const [currentSessionId, setCurrentSessionId] = useState<string | null>(null);
   const xtermRef = useRef<any>(null);
 
   // 获取 terminalStore

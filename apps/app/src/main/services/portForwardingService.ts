@@ -65,7 +65,7 @@ class PortForwardingService {
               tunnel.connection.client.unforwardIn(
                 '0.0.0.0', // 使用与创建时相同的地址
                 tunnel.remotePort || 22,
-                (err) => {
+                (_err) => {
                   // 静默处理错误
                 }
               );
@@ -277,11 +277,11 @@ class PortForwardingService {
             stream.pipe(localSocket).pipe(stream);
           });
 
-          localSocket.on('error', (err) => {
+          localSocket.on('error', (_err) => {
             stream.end();
           });
 
-          stream.on('error', (err) => {
+          stream.on('error', (_err) => {
             localSocket.end();
           });
 

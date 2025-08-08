@@ -27,7 +27,7 @@ interface TeamPermissionProviderProps {
 
 export const TeamPermissionProvider: React.FC<TeamPermissionProviderProps> = ({ children }) => {
   const [currentUserRole, setCurrentUserRole] = useState<TeamRole | null>(null);
-  const [teamMembers, setTeamMembers] = useState<TeamMemberData[]>([]);
+  // const [teamMembers, setTeamMembers] = useState<TeamMemberData[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const { currentMode, currentTeamId } = useDataContext();
 
