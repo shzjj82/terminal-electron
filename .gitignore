@@ -1,0 +1,85 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build outputs
+/dist/
+/build/
+/out/
+/release/
+**/dist/
+**/build/
+**/out/
+**/release/
+
+# Logs
+logs/
+*.log
+*.log.*
+**/logs/
+**/*.log
+**/*.log.*
+
+# Environment files
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Coverage and caches
+coverage/
+.nyc_output/
+.cache/
+.parcel-cache/
+**/coverage/
+**/.nyc_output/
+**/.cache/
+**/.parcel-cache/
+
+# Framework outputs
+.next/
+.nuxt/
+.vuepress/dist/
+**/.next/
+**/.nuxt/
+**/.vuepress/dist/
+
+# Electron
+release/
+**/release/
+
+# Optional npm/yarn/pnpm debug logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# IDE settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+**/.idea/
+.vscode-test/
+**/.vscode-test/
+
+# Linters cache
+.eslintcache
+**/.eslintcache
+
+# OS files
+.DS_Store
+**/.DS_Store
+
+# Temp directories
+temp/
+tmp/
+**/temp/
+**/tmp/
+
+# Other
+*.tgz
+node_repl_history

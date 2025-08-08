@@ -1,0 +1,21 @@
+import ReactDOM from 'react-dom/client';
+import App from './App';
+import './styles/globals.css';
+import { initializeStores } from './stores/globalStores';
+
+// 初始化 stores 并启动应用
+async function startApp() {
+  try {
+    await initializeStores();
+    
+    ReactDOM.createRoot(document.getElementById('root')!).render(
+      // <React.StrictMode>
+        <App />
+      // </React.StrictMode>
+    );
+  } catch (error) {
+    console.error('Failed to initialize app:', error);
+  }
+}
+
+startApp();
