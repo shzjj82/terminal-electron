@@ -103,6 +103,23 @@ docs/.cache/
 **/docs/.temp/
 **/docs/.cache/
 
+# VitePress cache and build outputs
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+docs/.vitepress/.temp/
+**/docs/.vitepress/cache/
+**/docs/.vitepress/dist/
+**/docs/.vitepress/.temp/
+
+# Documentation dependencies
+docs/node_modules/
+**/docs/node_modules/
+
+# Documentation lock files (optional - depends on your monorepo setup)
+# docs/yarn.lock
+# docs/package-lock.json
+# docs/pnpm-lock.yaml
+
 # Other
 *.tgz
 node_repl_history
