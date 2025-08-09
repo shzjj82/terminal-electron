@@ -98,6 +98,7 @@
     "electronVersion": "37.2.3",
     "mac": {
       "category": "public.app-category.developer-tools",
+      "artifactName": "Terminal.Electron-${arch}.${ext}",
       "target": [
         {
           "target": "dmg",
@@ -131,7 +132,8 @@
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "Terminal.Electron.Setup-${arch}.${ext}"
     }
   }
 }

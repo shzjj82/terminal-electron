@@ -27,7 +27,7 @@
             <span class="arch-label">ARM64</span>
           </label>
         </div>
-        <a href="https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe" class="primary-download-btn">
+        <a href="#" class="primary-download-btn">
           立即下载
         </a>
       </div>
@@ -43,15 +43,13 @@
 - **文件大小**: ~120MB
 - **系统要求**: Windows 10 或更高版本
 - **下载链接**: 
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe)
-  - [直接下载](https://releases.terminal-electron.com/windows/x64/Terminal-Electron-Setup-1.0.0.exe)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal.Electron.Setup-x64.exe)
 
 #### Windows ARM64
 - **文件大小**: ~110MB
 - **系统要求**: Windows 11 ARM64
 - **下载链接**:
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.exe)
-  - [直接下载](https://releases.terminal-electron.com/windows/arm64/Terminal-Electron-1.0.0-arm64.exe)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal.Electron.Setup-arm64.exe)
 
 ### macOS
 
@@ -59,39 +57,14 @@
 - **文件大小**: ~130MB
 - **系统要求**: macOS 10.15 (Catalina) 或更高版本
 - **下载链接**:
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.dmg)
-  - [直接下载](https://releases.terminal-electron.com/macos/x64/Terminal-Electron-1.0.0-x64.dmg)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal.Electron-x64.dmg)
 
 #### macOS Apple Silicon (ARM64)
 - **文件大小**: ~125MB
 - **系统要求**: macOS 11.0 (Big Sur) 或更高版本
 - **下载链接**:
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.dmg)
-  - [直接下载](https://releases.terminal-electron.com/macos/arm64/Terminal-Electron-1.0.0-arm64.dmg)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal.Electron-arm64.dmg)
 
-#### macOS Universal (Intel + Apple Silicon)
-- **文件大小**: ~150MB
-- **系统要求**: macOS 11.0 (Big Sur) 或更高版本
-- **下载链接**:
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-universal.dmg)
-  - [直接下载](https://releases.terminal-electron.com/macos/universal/Terminal-Electron-1.0.0-universal.dmg)
-
-### Linux
-
-#### Linux x64
-- **文件大小**: ~100MB
-- **系统要求**: Ubuntu 18.04+, CentOS 7+, Debian 9+
-- **下载链接**:
-  - [AppImage](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage)
-  - [Debian Package](https://github.com/shzjj82/terminal-electron/releases/latest/download/terminal-electron_1.0.0_amd64.deb)
-  - [RPM Package](https://github.com/shzjj82/terminal-electron/releases/latest/download/terminal-electron-1.0.0.x86_64.rpm)
-
-#### Linux ARM64
-- **文件大小**: ~95MB
-- **系统要求**: Ubuntu 20.04+, Debian 11+
-- **下载链接**:
-  - [AppImage](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.AppImage)
-  - [Debian Package](https://github.com/shzjj82/terminal-electron/releases/latest/download/terminal-electron_1.0.0_arm64.deb)
 
 ## 安装说明
 
@@ -234,24 +207,14 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
   const GITHUB_REPO = 'terminal-electron';
   const RELEASE_TAG = (window.__RELEASE_TAG__ || '').trim();
 
-  function stripV(tag){ return tag && tag.startsWith('v') ? tag.slice(1) : tag; }
-
-  // 若有 tag，则可直接拼出直链（需与产物命名一致）
+  // 若有 tag，则可直接拼出直链（与产物命名一致，无版本号）
   function buildDirectUrl(os, arch){
     if (!RELEASE_TAG) return '';
-    const version = stripV(RELEASE_TAG);
-    // 产物命名（与 electron-builder 输出匹配）
     if (os === 'windows') {
-      if (arch === 'arm64') return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}-setup.exe`;
-      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}-setup.exe`;
+      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal.Electron.Setup-${arch}.exe`;
     }
     if (os === 'macos') {
-      if (arch === 'arm64') return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}-arm64.dmg`;
-      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}.dmg`;
-    }
-    if (os === 'linux') {
-      if (arch === 'arm64') return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}-arm64.AppImage`;
-      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}.AppImage`;
+      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal.Electron-${arch}.dmg`;
     }
     return '';
   }
@@ -314,11 +277,7 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
       return filtered[0] || dmgAssets[0];
     }
 
-    if (os === 'linux') {
-      const appImages = assets.filter(a => a.name.toLowerCase().endsWith('.appimage'));
-      const filtered = appImages.filter(a => isArm ? includesAny(a.name, armHints) : includesAny(a.name, x64Hints) || !includesAny(a.name, armHints));
-      return filtered[0] || appImages[0];
-    }
+    // Linux 下载项已移除
 
     return null;
   }
