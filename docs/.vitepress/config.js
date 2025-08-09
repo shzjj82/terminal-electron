@@ -1,5 +1,8 @@
 import { defineConfig } from 'vitepress'
 
+// Inject release tag at build-time to avoid using import.meta in runtime script
+const RELEASE_TAG = process.env.VITE_RELEASE_TAG || '';
+
 export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/terminal-electron/' : '/',
   title: 'Terminal Electron',
@@ -10,7 +13,7 @@ export default defineConfig({
     [
       'script',
       {},
-      `window.__RELEASE_TAG__ = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_RELEASE_TAG) || ''`
+      `window.__RELEASE_TAG__ = ${JSON.stringify(RELEASE_TAG)}`
     ]
   ],
   themeConfig: {

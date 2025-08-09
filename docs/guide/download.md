@@ -321,6 +321,17 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
     }
   }
 
+  function setStaticLinks() {
+    const tag = RELEASE_TAG;
+    const setHref = (id, url) => { const el = document.getElementById(id); if (el) el.href = url; };
+    if (tag) {
+      setHref('win-x64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron.Setup-x64.exe`);
+      setHref('win-arm64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron.Setup-arm64.exe`);
+      setHref('mac-x64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron-x64.dmg`);
+      setHref('mac-arm64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron-arm64.dmg`);
+    }
+  }
+
   function updateUI(deviceInfo) {
     const platformIconEl = document.getElementById('platform-icon');
     const platformNameEl = document.getElementById('platform-name');
@@ -334,16 +345,7 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
     if (platformNameEl) platformNameEl.textContent = deviceInfo.osName;
     if (platformDescEl) platformDescEl.textContent = `选择适合您设备的架构版本`;
     updateDownloadLink();
-
-    // 同步更新“所有可用版本”区的直链，避免写死
-    const tag = RELEASE_TAG;
-    const setHref = (id, url) => { const el = document.getElementById(id); if (el) el.href = url; };
-    if (tag) {
-      setHref('win-x64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron.Setup-x64.exe`);
-      setHref('win-arm64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron.Setup-arm64.exe`);
-      setHref('mac-x64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron-x64.dmg`);
-      setHref('mac-arm64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron-arm64.dmg`);
-    }
+    setStaticLinks();
   }
   
   function init() {
@@ -352,6 +354,8 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
       const deviceInfo = detectDevice();
       window.currentDeviceInfo = deviceInfo;
       updateUI(deviceInfo);
+      // 再次尝试静态链接设置，确保元素已渲染
+      setTimeout(setStaticLinks, 0);
     }, 300);
     document.addEventListener('change', function(e) {
       if (e.target && e.target.name === 'architecture') {
