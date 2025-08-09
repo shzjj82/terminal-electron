@@ -5,7 +5,7 @@ export default defineConfig({
   title: 'Terminal Electron',
   description: '基于 Electron 的 SSH 终端应用',
   lang: 'zh-CN',
-  
+  ignoreDeadLinks:true,
   themeConfig: {
     siteTitle: 'Terminal Electron',
     nav: [

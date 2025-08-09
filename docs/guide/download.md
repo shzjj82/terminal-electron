@@ -225,6 +225,11 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
 (function() {
   'use strict';
   
+  // SSR 守卫：在构建（无 window/document）时直接跳过
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return;
+  }
+  
   // 下载链接配置
   const downloadLinks = {
     'windows-x64': {
