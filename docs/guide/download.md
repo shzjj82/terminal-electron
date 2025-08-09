@@ -232,35 +232,30 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
   
   const GITHUB_OWNER = 'shzjj82';
   const GITHUB_REPO = 'terminal-electron';
+  const RELEASE_TAG = (window.__RELEASE_TAG__ || '').trim();
 
-  // 下载链接配置（作为回退）
-  const fallbackLinks = {
-    'windows-x64': {
-      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
-      size: '—'
-    },
-    'windows-arm64': {
-      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
-      size: '—'
-    },
-    'macos-x64': {
-      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
-      size: '—'
-    },
-    'macos-arm64': {
-      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
-      size: '—'
-    },
-    'linux-x64': {
-      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
-      size: '—'
-    },
-    'linux-arm64': {
-      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
-      size: '—'
+  function stripV(tag){ return tag && tag.startsWith('v') ? tag.slice(1) : tag; }
+
+  // 若有 tag，则可直接拼出直链（需与产物命名一致）
+  function buildDirectUrl(os, arch){
+    if (!RELEASE_TAG) return '';
+    const version = stripV(RELEASE_TAG);
+    // 产物命名（与 electron-builder 输出匹配）
+    if (os === 'windows') {
+      if (arch === 'arm64') return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}-setup.exe`;
+      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}-setup.exe`;
     }
-  };
-
+    if (os === 'macos') {
+      if (arch === 'arm64') return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}-arm64.dmg`;
+      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}.dmg`;
+    }
+    if (os === 'linux') {
+      if (arch === 'arm64') return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}-arm64.AppImage`;
+      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal-Electron-${version}.AppImage`;
+    }
+    return '';
+  }
+  
   async function fetchLatestAssets() {
     try {
       const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`, {
@@ -304,14 +299,11 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
     const isArm = arch === 'arm64';
     const armHints = ['arm64', 'aarch64'];
     const x64Hints = ['x64', 'amd64'];
-
     const includesAny = (name, arr) => arr.some(k => name.toLowerCase().includes(k));
 
     if (os === 'windows') {
-      // prefer nsis exe
       const exeAssets = assets.filter(a => a.name.toLowerCase().endsWith('.exe'));
       const filtered = exeAssets.filter(a => isArm ? includesAny(a.name, armHints) : includesAny(a.name, x64Hints) || !includesAny(a.name, armHints));
-      // prefer setup
       const setup = filtered.find(a => a.name.toLowerCase().includes('setup')) || filtered[0];
       return setup;
     }
@@ -323,7 +315,6 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
     }
 
     if (os === 'linux') {
-      // prefer AppImage
       const appImages = assets.filter(a => a.name.toLowerCase().endsWith('.appimage'));
       const filtered = appImages.filter(a => isArm ? includesAny(a.name, armHints) : includesAny(a.name, x64Hints) || !includesAny(a.name, armHints));
       return filtered[0] || appImages[0];
@@ -333,16 +324,18 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
   }
   
   async function resolveDownloadInfo(os, arch) {
+    // 优先使用 tag 直链
+    const direct = buildDirectUrl(os, arch);
+    if (direct) return { url: direct, size: '' };
+
     if (!window.latestReleaseAssets) {
       window.latestReleaseAssets = await fetchLatestAssets();
     }
     const asset = matchAssetFor(os, arch, window.latestReleaseAssets);
     if (asset) {
-      // GitHub gives browser_download_url for direct download
       return { url: asset.browser_download_url, size: asset.size ? `${(asset.size/1024/1024).toFixed(0)}MB` : '—' };
     }
-    const key = `${os}-${arch}`;
-    return fallbackLinks[key] || fallbackLinks['windows-x64'];
+    return { url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`, size: '—' };
   }
   
   async function updateDownloadLink() {

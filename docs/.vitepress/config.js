@@ -6,6 +6,13 @@ export default defineConfig({
   description: '基于 Electron 的 SSH 终端应用',
   lang: 'zh-CN',
   ignoreDeadLinks:true,
+  head: [
+    [
+      'script',
+      {},
+      `window.__RELEASE_TAG__ = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_RELEASE_TAG) || ''`
+    ]
+  ],
   themeConfig: {
     siteTitle: 'Terminal Electron',
     nav: [
