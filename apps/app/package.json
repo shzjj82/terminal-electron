@@ -20,7 +20,7 @@
     "build": "yarn typecheck && electron-vite build",
     "postinstall": "electron-builder install-app-deps || echo 'Some native dependencies failed to build, but continuing...'",
     "build:unpack": "yarn build && electron-builder --dir",
-    "build:win": "yarn build && electron-builder --win",
+    "build:win": "electron-vite build && electron-builder --win",
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:mac:arm64": "electron-vite build && electron-builder --mac --arm64",
     "build:mac:x64": "electron-vite build && electron-builder --mac --x64",
