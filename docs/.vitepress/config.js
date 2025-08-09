@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/terminal-electron/' : '/',
   title: 'Terminal Electron',
   description: '基于 Electron 的 SSH 终端应用',
   lang: 'zh-CN',
