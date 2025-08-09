@@ -1,11 +1,13 @@
 name: Deploy Docs to GitHub Pages
 
 on:
+  release:
+    types: [published]
   workflow_dispatch:
     inputs:
       release_tag:
         description: 'Release tag used to build docs download links'
-        required: true
+        required: false
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -47,7 +49,8 @@ jobs:
           yarn build
         env:
           NODE_ENV: production
-          VITE_RELEASE_TAG: ${{ github.event.inputs.release_tag }}
+          # Prefer release tag when triggered by release; fallback to manual input when dispatching manually
+          VITE_RELEASE_TAG: ${{ github.event_name == 'release' && github.event.release.tag_name || github.event.inputs.release_tag }}
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

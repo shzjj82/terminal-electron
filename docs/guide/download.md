@@ -43,13 +43,13 @@
 - **文件大小**: ~120MB
 - **系统要求**: Windows 10 或更高版本
 - **下载链接**: 
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal.Electron.Setup-x64.exe)
+  - <a id="win-x64-link" href="#" target="_blank" rel="noreferrer">GitHub Releases</a>
 
 #### Windows ARM64
 - **文件大小**: ~110MB
 - **系统要求**: Windows 11 ARM64
 - **下载链接**:
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal.Electron.Setup-arm64.exe)
+  - <a id="win-arm64-link" href="#" target="_blank" rel="noreferrer">GitHub Releases</a>
 
 ### macOS
 
@@ -57,13 +57,13 @@
 - **文件大小**: ~130MB
 - **系统要求**: macOS 10.15 (Catalina) 或更高版本
 - **下载链接**:
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal.Electron-x64.dmg)
+  - <a id="mac-x64-link" href="#" target="_blank" rel="noreferrer">GitHub Releases</a>
 
 #### macOS Apple Silicon (ARM64)
 - **文件大小**: ~125MB
 - **系统要求**: macOS 11.0 (Big Sur) 或更高版本
 - **下载链接**:
-  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal.Electron-arm64.dmg)
+  - <a id="mac-arm64-link" href="#" target="_blank" rel="noreferrer">GitHub Releases</a>
 
 
 ## 安装说明
@@ -334,6 +334,16 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
     if (platformNameEl) platformNameEl.textContent = deviceInfo.osName;
     if (platformDescEl) platformDescEl.textContent = `选择适合您设备的架构版本`;
     updateDownloadLink();
+
+    // 同步更新“所有可用版本”区的直链，避免写死
+    const tag = RELEASE_TAG;
+    const setHref = (id, url) => { const el = document.getElementById(id); if (el) el.href = url; };
+    if (tag) {
+      setHref('win-x64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron.Setup-x64.exe`);
+      setHref('win-arm64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron.Setup-arm64.exe`);
+      setHref('mac-x64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron-x64.dmg`);
+      setHref('mac-arm64-link', `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${tag}/Terminal.Electron-arm64.dmg`);
+    }
   }
   
   function init() {
