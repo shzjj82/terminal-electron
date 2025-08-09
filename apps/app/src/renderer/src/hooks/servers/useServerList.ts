@@ -20,7 +20,7 @@ export const useServerList = ({
   onConnect,
   onDisconnect
 }: UseServerListProps): UseServerListReturn => {
-  const { canEditData, canDeleteData, canUseData, currentMode } = useTeamPermissions();
+  const { canEditData, canDeleteData, canUseData } = useTeamPermissions();
   // const isPersonalMode = currentMode === 'personal';
   
   const getActions = useCallback((server: any) => {

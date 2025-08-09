@@ -12,8 +12,8 @@ export class SyncService {
     }
 
     try {
-      // 同步服务器数据
-      const servers = serversStore.servers.map(server => ({
+      // 同步服务器数据（构建请求体；如不发送，避免未使用变量）
+      const serverPayloads = serversStore.servers.map(server => ({
         id: server.cloudId,
         name: server.name,
         host: server.host,
@@ -22,25 +22,27 @@ export class SyncService {
         authType: server.authType,
         password: server.password,
         keyId: server.keyId,
-        description: server.description || ''
+        ...(server as any).description ? { description: (server as any).description } : {}
       }));
+      void serverPayloads;
 
       // const syncedServers = await syncApi.syncServers(servers);
 
       // 同步密钥数据
-      keysStore.keys.map(key => ({
+      const keyPayloads = keysStore.keys.map(key => ({
         id: key.cloudId,
         name: key.name,
         type: key.type,
         privateKey: key.privateKey,
-        passphrase: key.passphrase || '',
-        description: key.description || ''
+        ...(key as any).passphrase ? { passphrase: (key as any).passphrase } : {},
+        ...(key as any).description ? { description: (key as any).description } : {}
       }));
+      void keyPayloads;
 
       // const syncedKeys = await syncApi.syncKeys(keys);
 
       // 同步端口转发数据
-      portForwardingStore.portForwards.map(forward => ({
+      const forwardPayloads = portForwardingStore.portForwards.map(forward => ({
         id: forward.cloudId,
         name: forward.name,
         type: forward.type,
@@ -57,6 +59,7 @@ export class SyncService {
         keyContent: forward.keyContent,
         passphrase: forward.passphrase
       }));
+      void forwardPayloads;
 
       // const syncedPortForwards = await syncApi.syncPortForwards(portForwards);
     } catch (error) {

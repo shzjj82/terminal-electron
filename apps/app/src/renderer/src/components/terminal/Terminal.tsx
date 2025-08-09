@@ -49,7 +49,7 @@ const Terminal: React.FC = observer(() => {
 
     if (sessionId) {
       terminalStore.setActiveSession(sessionId);
-      setCurrentSessionId(sessionId);
+      // setCurrentSessionId(sessionId); 
     }
     
     if (!terminalStore.activeSession) {

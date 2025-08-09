@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Users, Settings, UserPlus, UserMinus, Copy } from 'lucide-react';
+import { ArrowLeft, Users, UserPlus, Copy } from 'lucide-react';
 import { teamsApi, type TeamData, type TeamMemberData, type AddMemberData } from '@/api/teams';
 import { EmptyState } from '@/components/empty';
 import { PageHeader } from '@/components/header';
@@ -19,7 +17,7 @@ import { TeamPermissions } from '@/utils/permissions';
 const TeamDetail: React.FC = observer(() => {
   const { teamId } = useParams<{ teamId: string }>();
   const navigate = useNavigate();
-  const { canEditMemberRoles, canInviteMembers, canRemoveMembers, currentUserRole } = useTeamPermissions();
+  const { canEditMemberRoles, canInviteMembers, canRemoveMembers } = useTeamPermissions();
   const [team, setTeam] = useState<TeamData | null>(null);
   const [teamMembers, setTeamMembers] = useState<TeamMemberData[]>([]);
   const [filteredMembers, setFilteredMembers] = useState<TeamMemberData[]>([]);
@@ -103,12 +101,11 @@ const TeamDetail: React.FC = observer(() => {
     }
   };
 
-  // 复制邀请码
+  // 复制邀请码（直接使用已加载的团队邀请码）
   const copyInviteCode = async () => {
-    if (!teamId) return;
+    const code = team?.inviteCode || '';
     try {
-      const inviteCode = await teamsApi.inviteMember(teamId, { email: 'temp@example.com' });
-      await navigator.clipboard.writeText(inviteCode);
+      await navigator.clipboard.writeText(code);
     } catch (error) {
       console.error('复制邀请码失败:', error);
     }
@@ -119,10 +116,7 @@ const TeamDetail: React.FC = observer(() => {
     return TeamPermissions.getRoleText(role as any);
   };
 
-  // 获取角色颜色
-  const getRoleColor = (role: string) => {
-    return TeamPermissions.getRoleColor(role as any);
-  };
+  // （如需角色颜色，可按需启用）
 
   useEffect(() => {
     loadTeamInfo();

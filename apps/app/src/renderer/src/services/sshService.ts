@@ -29,15 +29,14 @@ export function closeSsh(sessionId: string) {
 
 export function onSshData(sessionId: string, callback: (data: string) => void) {
   const eventName = `ssh.data.${sessionId}`;
-  (window as any).electron.on(eventName, (...args: any[]) => {
-    const data = args[0];
+  (window as any).electron.on(eventName, (data: string) => {
     callback(data);
   });
 }
 
 export function onSshExit(sessionId: string, callback: () => void) {
   const eventName = `ssh.exit.${sessionId}`;
-  (window as any).electron.on(eventName, (...args: any[]) => {
+  (window as any).electron.on(eventName, () => {
     callback();
   });
 }

@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 import { authStore } from '@/stores/authStore';
 
 export const DataContextSwitcher = observer(() => {
-  const navigate = useNavigate();
   const { 
     currentMode, 
     currentTeamId, 

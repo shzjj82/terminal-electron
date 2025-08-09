@@ -102,10 +102,6 @@
         {
           "target": "dmg",
           "arch": ["x64", "arm64"]
-        },
-        {
-          "target": "zip",
-          "arch": ["x64", "arm64"]
         }
       ],
       "icon": "build/icon.icns"
@@ -114,10 +110,6 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64", "arm64"]
-        },
-        {
-          "target": "portable",
           "arch": ["x64", "arm64"]
         }
       ],

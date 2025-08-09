@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import { useState, useEffect } from 'react';
+ 
 import { 
   ChevronDown,
   Terminal,
@@ -12,7 +12,6 @@ import {
   User as UserIcon,
   HardDrive
 } from 'lucide-react';
-import { teamsApi } from '@/api/teams';
 import { Button } from '@/components/ui/button';
 import { 
   DropdownMenu,
@@ -34,22 +33,8 @@ const Layout = observer(() => {
   // 检查是否为Mac平台
   const isMac = navigator.platform.toLowerCase().includes('mac');
 
-  // 加载团队信息
-  const loadTeams = async () => {
-    try {
-      const teamsData = await teamsApi.getMyTeams();
-      setTeams(teamsData);
-    } catch (error) {
-      console.error('加载团队信息失败:', error);
-    }
-  };
-
-  // 组件加载时获取团队信息
-  useEffect(() => {
-    if (authStore.isAuthenticated) {
-      loadTeams();
-    }
-  }, [authStore.isAuthenticated]);
+  // （可选）如需加载团队信息，可在此调用相关接口
+  // 当前未在此组件内维护团队状态，避免未定义的 setTeams 报错
 
   // 窗口控制函数
   const handleWindowControl = (action: 'close' | 'minimize' | 'maximize') => {

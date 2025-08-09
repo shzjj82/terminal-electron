@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { TeamPermissions, TeamRole } from '@/utils/permissions';
-import { TeamMemberData } from '@/api/teams';
 import { useDataContext } from '@/hooks/useDataContext';
 import { authStore } from '@/stores/authStore';
 
@@ -46,7 +45,6 @@ export const TeamPermissionProvider: React.FC<TeamPermissionProviderProps> = ({ 
   const loadTeamMembers = async () => {
     if (currentMode !== 'team' || !currentTeamId || !authStore.isAuthenticated) {
       setCurrentUserRole(null);
-      setTeamMembers([]);
       return;
     }
 
@@ -54,7 +52,6 @@ export const TeamPermissionProvider: React.FC<TeamPermissionProviderProps> = ({ 
     try {
       const { teamsApi } = await import('@/api/teams');
       const members = await teamsApi.getTeamMembers(currentTeamId);
-      setTeamMembers(members);
       
       // 获取当前用户角色
       const userRole = TeamPermissions.getUserRole(members, authStore.user?.id || '');
@@ -62,7 +59,6 @@ export const TeamPermissionProvider: React.FC<TeamPermissionProviderProps> = ({ 
     } catch (error) {
       console.error('加载团队成员失败:', error);
       setCurrentUserRole(null);
-      setTeamMembers([]);
     } finally {
       setIsLoading(false);
     }
