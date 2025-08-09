@@ -18,7 +18,7 @@ Terminal Electron 支持使用 Docker 进行容器化部署，提供快速、一
 
 ### 1. 克隆项目
 ```bash
-git clone https://github.com/your-username/terminal-electron.git
+git clone https://github.com/shzjj82/terminal-electron.git
 cd terminal-electron
 ```
 

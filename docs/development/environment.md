@@ -139,7 +139,7 @@ git --version
 
 ```bash
 # 克隆项目仓库
-git clone https://github.com/your-username/terminal-electron.git
+git clone https://github.com/shzjj82/terminal-electron.git
 
 # 进入项目目录
 cd terminal-electron

@@ -27,7 +27,7 @@
             <span class="arch-label">ARM64</span>
           </label>
         </div>
-        <a href="https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe" class="primary-download-btn">
+        <a href="https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe" class="primary-download-btn">
           立即下载
         </a>
       </div>
@@ -43,14 +43,14 @@
 - **文件大小**: ~120MB
 - **系统要求**: Windows 10 或更高版本
 - **下载链接**: 
-  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe)
   - [直接下载](https://releases.terminal-electron.com/windows/x64/Terminal-Electron-Setup-1.0.0.exe)
 
 #### Windows ARM64
 - **文件大小**: ~110MB
 - **系统要求**: Windows 11 ARM64
 - **下载链接**:
-  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.exe)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.exe)
   - [直接下载](https://releases.terminal-electron.com/windows/arm64/Terminal-Electron-1.0.0-arm64.exe)
 
 ### macOS
@@ -59,21 +59,21 @@
 - **文件大小**: ~130MB
 - **系统要求**: macOS 10.15 (Catalina) 或更高版本
 - **下载链接**:
-  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.dmg)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.dmg)
   - [直接下载](https://releases.terminal-electron.com/macos/x64/Terminal-Electron-1.0.0-x64.dmg)
 
 #### macOS Apple Silicon (ARM64)
 - **文件大小**: ~125MB
 - **系统要求**: macOS 11.0 (Big Sur) 或更高版本
 - **下载链接**:
-  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.dmg)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.dmg)
   - [直接下载](https://releases.terminal-electron.com/macos/arm64/Terminal-Electron-1.0.0-arm64.dmg)
 
 #### macOS Universal (Intel + Apple Silicon)
 - **文件大小**: ~150MB
 - **系统要求**: macOS 11.0 (Big Sur) 或更高版本
 - **下载链接**:
-  - [GitHub Releases](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-universal.dmg)
+  - [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-universal.dmg)
   - [直接下载](https://releases.terminal-electron.com/macos/universal/Terminal-Electron-1.0.0-universal.dmg)
 
 ### Linux
@@ -82,16 +82,16 @@
 - **文件大小**: ~100MB
 - **系统要求**: Ubuntu 18.04+, CentOS 7+, Debian 9+
 - **下载链接**:
-  - [AppImage](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage)
-  - [Debian Package](https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron_1.0.0_amd64.deb)
-  - [RPM Package](https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron-1.0.0.x86_64.rpm)
+  - [AppImage](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage)
+  - [Debian Package](https://github.com/shzjj82/terminal-electron/releases/latest/download/terminal-electron_1.0.0_amd64.deb)
+  - [RPM Package](https://github.com/shzjj82/terminal-electron/releases/latest/download/terminal-electron-1.0.0.x86_64.rpm)
 
 #### Linux ARM64
 - **文件大小**: ~95MB
 - **系统要求**: Ubuntu 20.04+, Debian 11+
 - **下载链接**:
-  - [AppImage](https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.AppImage)
-  - [Debian Package](https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron_1.0.0_arm64.deb)
+  - [AppImage](https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.AppImage)
+  - [Debian Package](https://github.com/shzjj82/terminal-electron/releases/latest/download/terminal-electron_1.0.0_arm64.deb)
 
 ## 安装说明
 
@@ -130,7 +130,7 @@
 #### AppImage 方式（推荐）
 ```bash
 # 下载 AppImage 文件
-wget https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage
+wget https://github.com/shzjj82/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage
 
 # 添加执行权限
 chmod +x Terminal-Electron-1.0.0-x64.AppImage
@@ -142,7 +142,7 @@ chmod +x Terminal-Electron-1.0.0-x64.AppImage
 #### Debian/Ubuntu 安装
 ```bash
 # 下载 deb 包
-wget https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron_1.0.0_amd64.deb
+wget https://github.com/shzjj82/terminal-electron/releases/latest/download/terminal-electron_1.0.0_amd64.deb
 
 # 安装
 sudo dpkg -i terminal-electron_1.0.0_amd64.deb
@@ -154,7 +154,7 @@ sudo apt-get install -f
 #### CentOS/RHEL 安装
 ```bash
 # 下载 rpm 包
-wget https://github.com/your-username/terminal-electron/releases/latest/download/terminal-electron-1.0.0.x86_64.rpm
+wget https://github.com/shzjj82/terminal-electron/releases/latest/download/terminal-electron-1.0.0.x86_64.rpm
 
 # 安装
 sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
@@ -184,7 +184,7 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
 - 可选择立即更新或稍后更新
 
 ### 手动更新
-1. 访问 [GitHub Releases](https://github.com/your-username/terminal-electron/releases)
+1. 访问 [GitHub Releases](https://github.com/shzjj82/terminal-electron/releases)
 2. 下载最新版本
 3. 按照安装说明进行更新
 
@@ -209,7 +209,7 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
 
 ### 获取帮助
 - **文档**: 查看 [使用指南](./usage.md) 和 [配置指南](./configuration.md)
-- **GitHub Issues**: [报告问题](https://github.com/your-username/terminal-electron/issues)
+- **GitHub Issues**: [报告问题](https://github.com/shzjj82/terminal-electron/issues)
 - **Discord**: [加入社区](https://discord.gg/terminal-electron)
 - **邮箱**: support@terminal-electron.com
 
@@ -230,33 +230,49 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
     return;
   }
   
-  // 下载链接配置
-  const downloadLinks = {
+  const GITHUB_OWNER = 'shzjj82';
+  const GITHUB_REPO = 'terminal-electron';
+
+  // 下载链接配置（作为回退）
+  const fallbackLinks = {
     'windows-x64': {
-      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-Setup-1.0.0.exe',
-      size: '120MB'
+      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
+      size: '—'
     },
     'windows-arm64': {
-      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.exe',
-      size: '110MB'
+      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
+      size: '—'
     },
     'macos-x64': {
-      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.dmg',
-      size: '130MB'
+      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
+      size: '—'
     },
     'macos-arm64': {
-      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.dmg',
-      size: '125MB'
+      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
+      size: '—'
     },
     'linux-x64': {
-      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-x64.AppImage',
-      size: '100MB'
+      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
+      size: '—'
     },
     'linux-arm64': {
-      url: 'https://github.com/your-username/terminal-electron/releases/latest/download/Terminal-Electron-1.0.0-arm64.AppImage',
-      size: '95MB'
+      url: `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`,
+      size: '—'
     }
   };
+
+  async function fetchLatestAssets() {
+    try {
+      const res = await fetch(`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases/latest`, {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      });
+      if (!res.ok) throw new Error('Failed to fetch releases');
+      const data = await res.json();
+      return Array.isArray(data.assets) ? data.assets : [];
+    } catch (e) {
+      return [];
+    }
+  }
   
   // 简单的设备检测
   function detectDevice() {
@@ -266,7 +282,6 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
     let osName = 'Windows';
     let iconSrc = '/images/windows.png';
     
-    // 检测操作系统
     if (userAgent.includes('Mac')) {
       os = 'macos';
       osName = 'macOS';
@@ -277,111 +292,112 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
       iconSrc = '/images/linux.png';
     }
     
-    return {
-      os,
-      osName,
-      iconSrc
-    };
+    return { os, osName, iconSrc };
   }
   
-  // 获取当前选择的架构
   function getSelectedArchitecture() {
     const selectedArch = document.querySelector('input[name="architecture"]:checked');
     return selectedArch ? selectedArch.value : 'x64';
   }
-  
-  // 更新下载链接
-  function updateDownloadLink() {
-    const deviceInfo = window.currentDeviceInfo;
-    if (!deviceInfo) return;
-    
-    const arch = getSelectedArchitecture();
-    const key = `${deviceInfo.os}-${arch}`;
-    const downloadInfo = downloadLinks[key] || downloadLinks['windows-x64'];
-    
-    const downloadLink = document.querySelector('.primary-download-btn');
-    const fileSizeEl = document.getElementById('file-size');
-    
-    if (downloadLink) {
-      downloadLink.href = downloadInfo.url;
+
+  function matchAssetFor(os, arch, assets) {
+    const isArm = arch === 'arm64';
+    const armHints = ['arm64', 'aarch64'];
+    const x64Hints = ['x64', 'amd64'];
+
+    const includesAny = (name, arr) => arr.some(k => name.toLowerCase().includes(k));
+
+    if (os === 'windows') {
+      // prefer nsis exe
+      const exeAssets = assets.filter(a => a.name.toLowerCase().endsWith('.exe'));
+      const filtered = exeAssets.filter(a => isArm ? includesAny(a.name, armHints) : includesAny(a.name, x64Hints) || !includesAny(a.name, armHints));
+      // prefer setup
+      const setup = filtered.find(a => a.name.toLowerCase().includes('setup')) || filtered[0];
+      return setup;
     }
-    
-    if (fileSizeEl) {
-      fileSizeEl.textContent = `文件大小：约 ${downloadInfo.size}`;
+
+    if (os === 'macos') {
+      const dmgAssets = assets.filter(a => a.name.toLowerCase().endsWith('.dmg'));
+      const filtered = dmgAssets.filter(a => isArm ? includesAny(a.name, armHints) : includesAny(a.name, x64Hints) || !includesAny(a.name, armHints));
+      return filtered[0] || dmgAssets[0];
     }
+
+    if (os === 'linux') {
+      // prefer AppImage
+      const appImages = assets.filter(a => a.name.toLowerCase().endsWith('.appimage'));
+      const filtered = appImages.filter(a => isArm ? includesAny(a.name, armHints) : includesAny(a.name, x64Hints) || !includesAny(a.name, armHints));
+      return filtered[0] || appImages[0];
+    }
+
+    return null;
   }
   
-  // 显示加载状态
+  async function resolveDownloadInfo(os, arch) {
+    if (!window.latestReleaseAssets) {
+      window.latestReleaseAssets = await fetchLatestAssets();
+    }
+    const asset = matchAssetFor(os, arch, window.latestReleaseAssets);
+    if (asset) {
+      // GitHub gives browser_download_url for direct download
+      return { url: asset.browser_download_url, size: asset.size ? `${(asset.size/1024/1024).toFixed(0)}MB` : '—' };
+    }
+    const key = `${os}-${arch}`;
+    return fallbackLinks[key] || fallbackLinks['windows-x64'];
+  }
+  
+  async function updateDownloadLink() {
+    const deviceInfo = window.currentDeviceInfo;
+    if (!deviceInfo) return;
+    const arch = getSelectedArchitecture();
+    const downloadInfo = await resolveDownloadInfo(deviceInfo.os, arch);
+    const downloadLink = document.querySelector('.primary-download-btn');
+    const fileSizeEl = document.getElementById('file-size');
+    if (downloadLink) downloadLink.href = downloadInfo.url;
+    if (fileSizeEl && downloadInfo.size) fileSizeEl.textContent = `文件大小：约 ${downloadInfo.size}`;
+  }
+  
   function showLoading() {
     const platformNameEl = document.getElementById('platform-name');
     const platformDescEl = document.getElementById('platform-desc');
-    
     if (platformNameEl) {
       platformNameEl.textContent = '检测中...';
       platformNameEl.classList.add('loading');
     }
-    
     if (platformDescEl) {
       platformDescEl.textContent = '正在检测您的设备...';
       platformDescEl.classList.add('loading');
     }
   }
 
-  // 更新界面
   function updateUI(deviceInfo) {
     const platformIconEl = document.getElementById('platform-icon');
     const platformNameEl = document.getElementById('platform-name');
     const platformDescEl = document.getElementById('platform-desc');
-    
-    // 移除加载动画
-    if (platformNameEl) {
-      platformNameEl.classList.remove('loading');
-    }
-    if (platformDescEl) {
-      platformDescEl.classList.remove('loading');
-    }
-    
-    // 更新平台图标
+    if (platformNameEl) platformNameEl.classList.remove('loading');
+    if (platformDescEl) platformDescEl.classList.remove('loading');
     if (platformIconEl) {
       platformIconEl.src = deviceInfo.iconSrc;
       platformIconEl.alt = deviceInfo.osName;
     }
-    
-    // 更新平台名称
-    if (platformNameEl) {
-      platformNameEl.textContent = deviceInfo.osName;
-    }
-    
-    // 更新平台描述
-    if (platformDescEl) {
-      platformDescEl.textContent = `选择适合您设备的架构版本`;
-    }
-    
-    // 更新下载链接
+    if (platformNameEl) platformNameEl.textContent = deviceInfo.osName;
+    if (platformDescEl) platformDescEl.textContent = `选择适合您设备的架构版本`;
     updateDownloadLink();
   }
   
-  // 初始化
   function init() {
-    // 先显示加载状态
     showLoading();
-    
-    // 模拟检测延迟，然后更新界面
-    setTimeout(() => {
+    setTimeout(async () => {
       const deviceInfo = detectDevice();
-      window.currentDeviceInfo = deviceInfo; // 保存到全局变量
+      window.currentDeviceInfo = deviceInfo;
       updateUI(deviceInfo);
-    }, 500);
-    
-    // 监听架构选择变化
+    }, 300);
     document.addEventListener('change', function(e) {
-      if (e.target.name === 'architecture') {
+      if (e.target && e.target.name === 'architecture') {
         updateDownloadLink();
       }
     });
   }
   
-  // 页面加载完成后初始化
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

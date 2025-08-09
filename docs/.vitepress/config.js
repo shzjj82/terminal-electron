@@ -80,7 +80,7 @@ export default defineConfig({
     },
     
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/your-username/terminal-electron' }
+      { icon: 'github', link: 'https://github.com/shzjj82/terminal-electron' }
     ],
     
     footer: {

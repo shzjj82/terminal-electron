@@ -20,7 +20,7 @@
 
 1. **访问 GitHub Releases**
    ```
-   https://github.com/your-username/terminal-electron/releases
+   https://github.com/shzjj82/terminal-electron/releases
    ```
 
 2. **选择对应平台**
@@ -37,7 +37,7 @@
 
 1. **克隆仓库**
    ```bash
-   git clone https://github.com/your-username/terminal-electron.git
+   git clone https://github.com/shzjj82/terminal-electron.git
    cd terminal-electron
    ```
 

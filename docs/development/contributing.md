@@ -69,14 +69,14 @@
 ##### 1. Fork 项目
 ```bash
 # Fork 项目到您的 GitHub 账户
-# 访问 https://github.com/your-username/terminal-electron
+# 访问 https://github.com/shzjj82/terminal-electron
 # 点击 "Fork" 按钮
 ```
 
 ##### 2. 克隆您的 Fork
 ```bash
 # 克隆您的 Fork
-git clone https://github.com/your-username/terminal-electron.git
+git clone https://github.com/shzjj82/terminal-electron.git
 
 # 添加上游仓库
 git remote add upstream https://github.com/original-owner/terminal-electron.git
@@ -202,7 +202,7 @@ git commit -m "chore: update dependencies"
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/terminal-electron.git
+git clone https://github.com/shzjj82/terminal-electron.git
 cd terminal-electron
 
 # 安装依赖
@@ -683,7 +683,7 @@ git push origin v1.0.0
 感谢所有为 Terminal Electron 项目做出贡献的开发者！
 
 ### 贡献者名单
-- 查看 [GitHub Contributors](https://github.com/your-username/terminal-electron/graphs/contributors)
+- 查看 [GitHub Contributors](https://github.com/shzjj82/terminal-electron/graphs/contributors)
 - 查看 [项目致谢页面](./acknowledgments.md)
 
 ### 特别感谢

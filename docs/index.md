@@ -10,7 +10,7 @@ hero:
       link: /guide/
     - theme: alt
       text: 查看源码
-      link: https://github.com/your-username/terminal-electron
+      link: https://github.com/shzjj82/terminal-electron
 
 features:
   - icon: 🔐

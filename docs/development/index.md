@@ -57,7 +57,7 @@ terminal-electron/
 
 ### 1. 克隆项目
 ```bash
-git clone https://github.com/your-username/terminal-electron.git
+git clone https://github.com/shzjj82/terminal-electron.git
 cd terminal-electron
 ```
 

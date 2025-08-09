@@ -1,0 +1,88 @@
+name: Build and Release Electron Apps
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'apps/app/**'
+      - '.github/workflows/release-electron.yml'
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-matrix:
+    name: Build (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest, ubuntu-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: Install dependencies (root)
+        run: yarn install --frozen-lockfile
+
+      - name: Install dependencies (apps/app)
+        working-directory: apps/app
+        run: yarn install --frozen-lockfile || true
+
+      - name: Set CI env
+        run: echo "CI=true" >> $GITHUB_ENV
+
+      - name: Build on macOS (arm64 + x64)
+        if: matrix.os == 'macos-latest'
+        working-directory: apps/app
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn build:mac:arm64
+          yarn build:mac:x64
+
+      - name: Build on Windows (x64 + arm64)
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        working-directory: apps/app
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn build:win
+
+      - name: Build on Linux (x64 + arm64)
+        if: matrix.os == 'ubuntu-latest'
+        working-directory: apps/app
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn build:linux
+          yarn build:linux:arm64 || true
+
+      - name: Upload build artifacts
+        if: startsWith(github.ref, 'refs/heads/')
+        uses: actions/upload-artifact@v4
+        with:
+          name: electron-${{ runner.os }}
+          path: |
+            apps/app/release/**/*
+
+      - name: Upload to GitHub Release assets (tag builds)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            apps/app/release/**/*
+          fail_on_unmatched_files: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
