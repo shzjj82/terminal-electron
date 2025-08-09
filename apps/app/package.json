@@ -7,7 +7,7 @@
   "homepage": "https://electron-vite.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/terminal-electron.git"
+    "url": "https://github.com/shzjj82/terminal-electron.git"
   },
   "scripts": {
     "format": "prettier --write .",

@@ -38,8 +38,7 @@ linux:
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false
-publish:
-  provider: generic
-  url: https://example.com/auto-updates
+# Do not auto-publish from electron-builder; CI will upload assets separately
+publish: []
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
