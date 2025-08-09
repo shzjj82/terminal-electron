@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An Electron application with React and TypeScript",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "Terminal Electron <support@terminal-electron.com>",
   "homepage": "https://electron-vite.org",
   "repository": {
     "type": "git",
@@ -19,17 +19,17 @@
     "dev": "electron-vite dev",
     "build": "yarn typecheck && electron-vite build",
     "postinstall": "electron-builder install-app-deps || echo 'Some native dependencies failed to build, but continuing...'",
-    "build:unpack": "yarn build && electron-builder --dir",
-    "build:win": "electron-vite build && electron-builder --win",
-    "build:mac": "electron-vite build && electron-builder --mac",
-    "build:mac:arm64": "electron-vite build && electron-builder --mac --arm64",
-    "build:mac:x64": "electron-vite build && electron-builder --mac --x64",
-    "build:linux": "electron-vite build && electron-builder --linux",
-    "build:linux:arm64": "electron-vite build && electron-builder --linux --arm64",
-    "build:linux:x64": "electron-vite build && electron-builder --linux --x64",
-    "build:all": "yarn build && electron-builder -mwl",
-    "build:all:arm64": "yarn build && electron-builder -mwl --arm64",
-    "build:all:x64": "yarn build && electron-builder -mwl --x64",
+    "build:unpack": "electron-vite build && electron-builder --dir --publish=never",
+    "build:win": "electron-vite build && electron-builder --win --publish=never",
+    "build:mac": "electron-vite build && electron-builder --mac --publish=never",
+    "build:mac:arm64": "electron-vite build && electron-builder --mac --arm64 --publish=never",
+    "build:mac:x64": "electron-vite build && electron-builder --mac --x64 --publish=never",
+    "build:linux": "electron-vite build && electron-builder --linux --publish=never",
+    "build:linux:arm64": "electron-vite build && electron-builder --linux --arm64 --publish=never",
+    "build:linux:x64": "electron-vite build && electron-builder --linux --x64 --publish=never",
+    "build:all": "yarn build && electron-builder -mwl --publish=never",
+    "build:all:arm64": "yarn build && electron-builder -mwl --arm64 --publish=never",
+    "build:all:x64": "yarn build && electron-builder -mwl --x64 --publish=never",
     "clean": "rm -rf out dist release"
   },
   "dependencies": {
@@ -124,6 +124,7 @@
       "icon": "build/icon.ico"
     },
     "linux": {
+      "maintainer": "Terminal Electron <support@terminal-electron.com>",
       "target": [
         {
           "target": "AppImage",
