@@ -10,6 +10,9 @@ export default defineConfig({
   lang: 'zh-CN',
   ignoreDeadLinks: true,
   publicDir: 'public',
+  vite: {
+    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg', '**/*.ico'],
+  },
   head: [
     [
       'script',
