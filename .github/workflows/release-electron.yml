@@ -41,8 +41,19 @@ jobs:
         run: |
           if [ -f "env/production.env" ]; then
             echo "Loading production environment variables..."
-            export $(cat env/production.env | grep -v '^#' | xargs)
-            echo "Environment variables loaded"
+            # 读取环境变量文件并设置到 GitHub Actions 环境
+            while IFS= read -r line; do
+              # 跳过注释和空行
+              if [[ ! "$line" =~ ^# ]] && [[ -n "$line" ]]; then
+                # 提取变量名和值
+                var_name=$(echo "$line" | cut -d'=' -f1)
+                var_value=$(echo "$line" | cut -d'=' -f2-)
+                # 设置到 GitHub Actions 环境
+                echo "${var_name}=${var_value}" >> $GITHUB_ENV
+                echo "Set ${var_name}=${var_value}"
+              fi
+            done < env/production.env
+            echo "Production environment variables loaded"
           else
             echo "Warning: env/production.env not found, using defaults"
           fi
@@ -54,6 +65,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_ENV: production
           CI: true
+          API_BASE_URL: ${{ env.API_BASE_URL }}
+          API_TIMEOUT: ${{ env.API_TIMEOUT }}
+          BUILD_TARGET: ${{ env.BUILD_TARGET }}
         run: |
           yarn build:mac:arm64
           yarn build:mac:x64
@@ -66,6 +80,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_ENV: production
           CI: true
+          API_BASE_URL: ${{ env.API_BASE_URL }}
+          API_TIMEOUT: ${{ env.API_TIMEOUT }}
+          BUILD_TARGET: ${{ env.BUILD_TARGET }}
         run: |
           yarn build:win:x64
           yarn build:win:arm64
