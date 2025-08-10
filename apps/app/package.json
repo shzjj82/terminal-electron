@@ -107,7 +107,7 @@
           "arch": ["x64", "arm64"]
         }
       ],
-      "icon": "build/icon.icns"
+      "icon": "./build/icon.icns"
     },
     "win": {
       "target": [
@@ -116,7 +116,7 @@
           "arch": ["x64", "arm64"]
         }
       ],
-      "icon": "build/icon.ico",
+      "icon": "./build/icon.ico",
       "artifactName": "Terminal.Electron.Setup-${arch}.${ext}"
     },
     "linux": {
@@ -131,7 +131,7 @@
           "arch": ["x64", "arm64"]
         }
       ],
-      "icon": "build/icon.png"
+      "icon": "./build/icon.png"
     },
     "nsis": {
       "oneClick": false,

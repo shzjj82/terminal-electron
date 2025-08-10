@@ -37,6 +37,17 @@ jobs:
         working-directory: apps/app
         run: yarn install --frozen-lockfile || true
 
+      - name: Verify build resources
+        working-directory: apps/app
+        run: |
+          echo "Checking build resources..."
+          ls -la build/ || echo "build directory not found"
+          echo "Checking icon files..."
+          ls -la build/icon.* || echo "icon files not found"
+          echo "Current working directory: $(pwd)"
+          echo "Directory contents:"
+          ls -la
+
       - name: Load environment variables
         shell: bash
         run: |
@@ -75,6 +86,19 @@ jobs:
           API_TIMEOUT: ${{ env.API_TIMEOUT }}
           BUILD_TARGET: ${{ env.BUILD_TARGET }}
         run: |
+          echo "Building with environment variables:"
+          echo "API_BASE_URL: $API_BASE_URL"
+          echo "API_TIMEOUT: $API_TIMEOUT"
+          echo "BUILD_TARGET: $BUILD_TARGET"
+          # 创建临时环境变量文件确保构建过程能读取到
+          cat > .env.production << EOF
+          API_BASE_URL=$API_BASE_URL
+          API_TIMEOUT=$API_TIMEOUT
+          BUILD_TARGET=$BUILD_TARGET
+          NODE_ENV=production
+          EOF
+          echo "Created .env.production:"
+          cat .env.production
           yarn build:mac:arm64
           yarn build:mac:x64
 
@@ -90,6 +114,19 @@ jobs:
           API_TIMEOUT: ${{ env.API_TIMEOUT }}
           BUILD_TARGET: ${{ env.BUILD_TARGET }}
         run: |
+          echo "Building with environment variables:"
+          echo "API_BASE_URL: $API_BASE_URL"
+          echo "API_TIMEOUT: $API_TIMEOUT"
+          echo "BUILD_TARGET: $BUILD_TARGET"
+          # 创建临时环境变量文件确保构建过程能读取到
+          cat > .env.production << EOF
+          API_BASE_URL=$API_BASE_URL
+          API_TIMEOUT=$API_TIMEOUT
+          BUILD_TARGET=$BUILD_TARGET
+          NODE_ENV=production
+          EOF
+          echo "Created .env.production:"
+          cat .env.production
           yarn build:win:x64
           yarn build:win:arm64
 
