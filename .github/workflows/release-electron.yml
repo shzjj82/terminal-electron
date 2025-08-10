@@ -91,11 +91,11 @@ jobs:
           echo "Available files in dist-release:"
           find dist-release -type f \( -name "*.dmg" -o -name "*.exe" \) -print
           
-          # 只保留指定的文件
-          find dist-release -name "Terminal.Electron.Setup-x64.exe" -exec cp {} filtered-release/ \;
-          find dist-release -name "Terminal.Electron.Setup-arm64.exe" -exec cp {} filtered-release/ \;
-          find dist-release -name "Terminal.Electron-x64.dmg" -exec cp {} filtered-release/ \;
-          find dist-release -name "Terminal.Electron-arm64.dmg" -exec cp {} filtered-release/ \;
+          # 只保留指定的文件（排除 unpacked 目录和没有架构标识的文件）
+          find dist-release -maxdepth 1 -name "Terminal.Electron.Setup-x64.exe" -exec cp {} filtered-release/ \;
+          find dist-release -maxdepth 1 -name "Terminal.Electron.Setup-arm64.exe" -exec cp {} filtered-release/ \;
+          find dist-release -maxdepth 1 -name "Terminal.Electron-x64.dmg" -exec cp {} filtered-release/ \;
+          find dist-release -maxdepth 1 -name "Terminal.Electron-arm64.dmg" -exec cp {} filtered-release/ \;
           
           echo "Filtered files:"
           ls -la filtered-release/ || echo "No files found"
@@ -114,13 +114,13 @@ jobs:
       - name: Upload to GitHub Release assets
         uses: ncipollo/release-action@v1
         with:
-          files: |
+          artifacts: |
             filtered-release/Terminal.Electron.Setup-x64.exe
             filtered-release/Terminal.Electron.Setup-arm64.exe
             filtered-release/Terminal.Electron-x64.dmg
             filtered-release/Terminal.Electron-arm64.dmg
           allowUpdates: true
           replacesArtifacts: true
-          failOnUnmatchedFiles: false
+          artifactErrorsFailBuild: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

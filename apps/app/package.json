@@ -116,7 +116,8 @@
           "arch": ["x64", "arm64"]
         }
       ],
-      "icon": "build/icon.ico"
+      "icon": "build/icon.ico",
+      "artifactName": "Terminal.Electron.Setup-${arch}.${ext}"
     },
     "linux": {
       "maintainer": "Terminal Electron <support@terminal-electron.com>",
