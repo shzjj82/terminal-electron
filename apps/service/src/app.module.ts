@@ -38,8 +38,8 @@ import { join } from 'path';
           database: configService.get<string>('DB_DATABASE', 'terminal_db'),
           entities: [User, Server, Key, PortForward, Team, TeamMember],
           synchronize: true,
-          logging: configService.get('NODE_ENV') === 'development',
-          ssl: configService.get('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
+          // logging: configService.get('NODE_ENV') === 'development',
+          // ssl: configService.get('NODE_ENV') === 'production' ? { rejectUnauthorized: false } : false,
         };
 
         // 在开发环境下，尝试创建数据库
