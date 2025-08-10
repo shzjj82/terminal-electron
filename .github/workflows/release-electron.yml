@@ -39,6 +39,7 @@ jobs:
 
       - name: Verify build resources
         working-directory: apps/app
+        shell: bash
         run: |
           echo "Checking build resources..."
           ls -la build/ || echo "build directory not found"
