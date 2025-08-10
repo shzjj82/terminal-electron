@@ -211,10 +211,12 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
   function buildDirectUrl(os, arch){
     if (!RELEASE_TAG) return '';
     if (os === 'windows') {
-      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal.Electron.Setup-${arch}.exe`;
+      const fileName = arch === 'arm64' ? 'Terminal.Electron.Setup-arm64.exe' : 'Terminal.Electron.Setup-x64.exe';
+      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/${fileName}`;
     }
     if (os === 'macos') {
-      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/Terminal.Electron-${arch}.dmg`;
+      const fileName = arch === 'arm64' ? 'Terminal.Electron-arm64.dmg' : 'Terminal.Electron-x64.dmg';
+      return `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO}/releases/download/${RELEASE_TAG}/${fileName}`;
     }
     return '';
   }
@@ -259,25 +261,25 @@ sudo rpm -i terminal-electron-1.0.0.x86_64.rpm
   }
 
   function matchAssetFor(os, arch, assets) {
-    const isArm = arch === 'arm64';
-    const armHints = ['arm64', 'aarch64'];
-    const x64Hints = ['x64', 'amd64'];
-    const includesAny = (name, arr) => arr.some(k => name.toLowerCase().includes(k));
-
+    // 只匹配指定的四个文件
+    const targetFiles = [
+      'Terminal.Electron.Setup-x64.exe',
+      'Terminal.Electron.Setup-arm64.exe', 
+      'Terminal.Electron-x64.dmg',
+      'Terminal.Electron-arm64.dmg'
+    ];
+    
     if (os === 'windows') {
-      const exeAssets = assets.filter(a => a.name.toLowerCase().endsWith('.exe'));
-      const filtered = exeAssets.filter(a => isArm ? includesAny(a.name, armHints) : includesAny(a.name, x64Hints) || !includesAny(a.name, armHints));
-      const setup = filtered.find(a => a.name.toLowerCase().includes('setup')) || filtered[0];
-      return setup;
+      const isArm = arch === 'arm64';
+      const targetName = isArm ? 'Terminal.Electron.Setup-arm64.exe' : 'Terminal.Electron.Setup-x64.exe';
+      return assets.find(a => a.name === targetName);
     }
 
     if (os === 'macos') {
-      const dmgAssets = assets.filter(a => a.name.toLowerCase().endsWith('.dmg'));
-      const filtered = dmgAssets.filter(a => isArm ? includesAny(a.name, armHints) : includesAny(a.name, x64Hints) || !includesAny(a.name, armHints));
-      return filtered[0] || dmgAssets[0];
+      const isArm = arch === 'arm64';
+      const targetName = isArm ? 'Terminal.Electron-arm64.dmg' : 'Terminal.Electron-x64.dmg';
+      return assets.find(a => a.name === targetName);
     }
-
-    // Linux 下载项已移除
 
     return null;
   }

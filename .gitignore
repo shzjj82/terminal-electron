@@ -10,6 +10,7 @@ node_modules/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+!.apps/app/build
 
 # Build outputs
 /dist/
@@ -18,6 +19,7 @@ node_modules/
 /release/
 **/dist/
 **/build/
+!apps/app/build/
 **/out/
 **/release/
 

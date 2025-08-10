@@ -83,12 +83,27 @@ jobs:
           echo "Will upload these:" 
           find dist-release -type f \( -name "*.dmg" -o -name "*.exe" \) -print || true
 
+      - name: Filter specific files
+        run: |
+          mkdir -p filtered-release
+          # 只保留指定的文件
+          find dist-release -name "Terminal.Electron.Setup-x64.exe" -exec cp {} filtered-release/ \;
+          find dist-release -name "Terminal.Electron.Setup-arm64.exe" -exec cp {} filtered-release/ \;
+          find dist-release -name "Terminal.Electron-x64.dmg" -exec cp {} filtered-release/ \;
+          find dist-release -name "Terminal.Electron-arm64.dmg" -exec cp {} filtered-release/ \;
+          echo "Filtered files:"
+          ls -la filtered-release/
+
       - name: Upload to GitHub Release assets
-        uses: softprops/action-gh-release@v2
+        uses: ncipollo/release-action@v1
         with:
           files: |
-            dist-release/**/*.dmg
-            dist-release/**/*.exe
-          fail_on_unmatched_files: false
+            filtered-release/Terminal.Electron.Setup-x64.exe
+            filtered-release/Terminal.Electron.Setup-arm64.exe
+            filtered-release/Terminal.Electron-x64.dmg
+            filtered-release/Terminal.Electron-arm64.dmg
+          allowUpdates: true
+          replacesArtifacts: true
+          failOnUnmatchedFiles: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
