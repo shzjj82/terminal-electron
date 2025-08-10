@@ -56,7 +56,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          yarn build:win
+          yarn build:win:x64
+          yarn build:win:arm64
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -86,13 +87,29 @@ jobs:
       - name: Filter specific files
         run: |
           mkdir -p filtered-release
+          # 显示所有可用文件
+          echo "Available files in dist-release:"
+          find dist-release -type f \( -name "*.dmg" -o -name "*.exe" \) -print
+          
           # 只保留指定的文件
           find dist-release -name "Terminal.Electron.Setup-x64.exe" -exec cp {} filtered-release/ \;
           find dist-release -name "Terminal.Electron.Setup-arm64.exe" -exec cp {} filtered-release/ \;
           find dist-release -name "Terminal.Electron-x64.dmg" -exec cp {} filtered-release/ \;
           find dist-release -name "Terminal.Electron-arm64.dmg" -exec cp {} filtered-release/ \;
+          
           echo "Filtered files:"
-          ls -la filtered-release/
+          ls -la filtered-release/ || echo "No files found"
+          
+          # 检查是否找到了文件
+          if [ ! "$(ls -A filtered-release)" ]; then
+            echo "ERROR: No files matched the filter criteria!"
+            echo "Expected files:"
+            echo "  - Terminal.Electron.Setup-x64.exe"
+            echo "  - Terminal.Electron.Setup-arm64.exe"
+            echo "  - Terminal.Electron-x64.dmg"
+            echo "  - Terminal.Electron-arm64.dmg"
+            exit 1
+          fi
 
       - name: Upload to GitHub Release assets
         uses: ncipollo/release-action@v1
