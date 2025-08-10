@@ -39,18 +39,11 @@ RUN yarn install --frozen-lockfile --production=true && yarn cache clean
 
 # 从构建阶段复制构建产物
 COPY --from=builder --chown=nestjs:nodejs /app/dist ./dist
-# 复制健康检查脚本
-COPY --from=builder --chown=nestjs:nodejs /app/health.js ./health.js
-
 # 切换到非 root 用户
 USER nestjs
 
 # 暴露端口
 EXPOSE 3000
-
-# 健康检查
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node health.js || exit 1
 
 # 启动应用
 CMD ["yarn", "start:prod"] 

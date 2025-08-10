@@ -1,9 +1,30 @@
+version: '3.8'
+
 services:
+  # PostgreSQL 数据库
+  postgres:
+    image: postgres:15-alpine
+    container_name: terminal-postgres
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-terminal_db}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - terminal-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres} -d ${DB_DATABASE:-terminal_db}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   # NestJS 服务
   service:
-    build:
-      context: ../apps/service
-      dockerfile: Dockerfile
+    image: registry.cn-shanghai.aliyuncs.com/my_docker-hub/terminal:latest
     container_name: ${DOCKER_CONTAINER_NAME:-terminal-service}
     ports:
       - "${SERVICE_PORT:-3000}:3000"
@@ -11,19 +32,30 @@ services:
       - ../env/production.env
     environment:
       - NODE_ENV=production
-      - DB_TYPE=${DB_TYPE:-sqlite}
-      - DB_DATABASE=${DB_DATABASE:-/app/data/terminal.db}
+      - DB_TYPE=${DB_TYPE:-postgres}
+      - DB_HOST=postgres
+      - DB_PORT=${DB_PORT:-5432}
+      - DB_USERNAME=${DB_USERNAME:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - DB_DATABASE=${DB_DATABASE:-terminal_db}
       - JWT_SECRET=${JWT_SECRET:-your-secret-key-change-in-production}
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN:-7d}
       - PORT=${SERVICE_PORT:-3000}
-    volumes:
-      - service_data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
     networks:
       - terminal-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
 volumes:
-  service_data:
+  postgres_data:
     driver: local
 
 networks:

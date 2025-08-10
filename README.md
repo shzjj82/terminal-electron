@@ -5,7 +5,7 @@
 ## 技术栈
 
 - **前端**: Electron + React + TypeScript + MobX
-- **后端**: NestJS + TypeORM + SQLite
+- **后端**: NestJS + TypeORM + PostgreSQL
 - **包管理**: Yarn + Turborepo
 - **终端**: xterm.js + ssh2
 - **容器化**: Docker + Docker Compose
@@ -45,8 +45,12 @@ terminal-electron/
 |--------|------|----------|----------|
 | API_BASE_URL | API 基础地址 | http://localhost:3000 | http://localhost:3000 |
 | API_TIMEOUT | API 超时时间 | 10000ms | 10000ms |
-| DB_TYPE | 数据库类型 | sqlite | sqlite |
-| DB_DATABASE | 数据库文件路径 | apps/service/data/terminal-dev.db | /app/data/terminal.db |
+| DB_TYPE | 数据库类型 | postgres | postgres |
+| DB_HOST | 数据库主机 | localhost | postgres |
+| DB_PORT | 数据库端口 | 5432 | 5432 |
+| DB_USERNAME | 数据库用户名 | postgres | postgres |
+| DB_PASSWORD | 数据库密码 | password | postgres |
+| DB_DATABASE | 数据库名称 | terminal_dev | terminal_db |
 | JWT_SECRET | JWT 密钥 | dev-secret-key | your-secret-key |
 | JWT_EXPIRES_IN | JWT 过期时间 | 7d | 7d |
 | SERVICE_PORT | 服务端口 | 3000 | 3000 |
@@ -80,13 +84,46 @@ yarn install
 
 ### 2. 环境变量配置
 
-复制环境变量模板：
+环境变量文件位于 `env/` 目录：
 
+- `env/development.env` - 开发环境配置
+- `env/production.env` - 生产环境配置
+
+根据需要修改对应的配置文件。
+
+### 3. 数据库设置
+
+应用会自动检查并创建所需的数据库和表结构：
+
+#### 方式1：使用Docker（推荐）
 ```bash
-cp env/env.example env/development.env
+# 启动PostgreSQL数据库
+yarn docker:dev:up
+
+# 查看数据库日志
+yarn docker:dev:logs
+
+# 停止数据库
+yarn docker:dev:down
 ```
 
-根据需要修改 `env/development.env` 中的配置。
+#### 方式2：使用现有PostgreSQL服务
+```bash
+# 直接启动应用，会自动创建数据库
+yarn dev:service
+```
+
+#### 方式3：手动创建数据库
+```bash
+# 手动创建数据库
+psql -h localhost -p 5432 -U postgres -d postgres -c "CREATE DATABASE terminal_dev;"
+```
+
+**注意**: 
+- 在开发环境下，应用会自动检查并创建数据库（如果不存在）
+- TypeORM会自动创建所需的表结构
+- 确保PostgreSQL服务正在运行
+- 不要在工作区目录下创建 `.env` 文件，避免配置冲突
 
 ### 3. 启动开发服务器
 
@@ -218,9 +255,9 @@ yarn docker:clean
 
 ### Docker 配置说明
 
-- **数据库**: 使用 SQLite 文件数据库，数据持久化在 Docker 卷中
+- **数据库**: 使用 PostgreSQL 数据库，数据持久化在 Docker 卷中
 - **服务**: NestJS 应用运行在容器中，端口 3000
-- **数据持久化**: 数据库文件存储在 `service_data` 卷中
+- **数据持久化**: PostgreSQL 数据存储在 `postgres_data` 卷中
 - **网络**: 使用 `terminal-network` 网络进行容器间通信
 - **环境变量**: 从 `env/production.env` 文件加载配置
 
@@ -230,8 +267,12 @@ Docker 容器使用以下环境变量：
 
 ```bash
 NODE_ENV=production
-DB_TYPE=sqlite
-DB_DATABASE=/app/data/terminal.db
+DB_TYPE=postgres
+DB_HOST=postgres
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=postgres
+DB_DATABASE=terminal_db
 JWT_SECRET=your-secret-key-change-in-production
 JWT_EXPIRES_IN=7d
 PORT=3000
@@ -239,14 +280,17 @@ PORT=3000
 
 ### 数据备份
 
-数据库文件存储在 Docker 卷中，可以通过以下方式备份：
+PostgreSQL 数据存储在 Docker 卷中，可以通过以下方式备份：
 
 ```bash
 # 备份数据库
-docker run --rm -v terminal-electron_service_data:/data -v $(pwd):/backup alpine tar czf /backup/terminal-db-backup.tar.gz -C /data .
+docker exec terminal-postgres pg_dump -U postgres terminal_db > terminal-db-backup.sql
 
 # 恢复数据库
-docker run --rm -v terminal-electron_service_data:/data -v $(pwd):/backup alpine tar xzf /backup/terminal-db-backup.tar.gz -C /data
+docker exec -i terminal-postgres psql -U postgres terminal_db < terminal-db-backup.sql
+
+# 或者使用 Docker 卷备份
+docker run --rm -v terminal-electron_postgres_data:/var/lib/postgresql/data -v $(pwd):/backup alpine tar czf /backup/postgres-data-backup.tar.gz -C /var/lib/postgresql/data .
 ```
 
 ## 主要功能
@@ -316,10 +360,10 @@ yarn build:electron
 如果遇到数据库问题：
 
 ```bash
-# 删除数据库文件
-rm apps/service/*.db
+# 检查数据库连接
+docker exec terminal-postgres psql -U postgres -c "SELECT 1;"
 
-# 重新启动服务
+# 重新启动服务 (TypeORM会自动处理表结构)
 yarn workspace service start:dev
 ```
 

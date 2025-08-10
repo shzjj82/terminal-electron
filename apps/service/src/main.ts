@@ -1,12 +1,8 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
-import { initEnvironment } from './config/env.config';
 
 async function bootstrap() {
-  // 初始化环境变量
-  initEnvironment();
-  
   const app = await NestFactory.create(AppModule);
   
   // 启用CORS

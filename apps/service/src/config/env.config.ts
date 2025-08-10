@@ -4,6 +4,10 @@ import { join } from 'path';
 interface EnvConfig {
   NODE_ENV: string;
   DB_TYPE: string;
+  DB_HOST: string;
+  DB_PORT: number;
+  DB_USERNAME: string;
+  DB_PASSWORD: string;
   DB_DATABASE: string;
   JWT_SECRET: string;
   JWT_EXPIRES_IN: string;
@@ -53,8 +57,12 @@ export const loadEnvironmentConfig = (): EnvConfig => {
   
   return {
     NODE_ENV: envFile.NODE_ENV || process.env.NODE_ENV || 'development',
-    DB_TYPE: envFile.DB_TYPE || process.env.DB_TYPE || 'sqlite',
-    DB_DATABASE: envFile.DB_DATABASE || process.env.DB_DATABASE || (isDev ? 'apps/service/data/terminal-dev.db' : '/app/data/terminal.db'),
+    DB_TYPE: envFile.DB_TYPE || process.env.DB_TYPE || 'postgres',
+    DB_HOST: envFile.DB_HOST || process.env.DB_HOST || 'localhost',
+    DB_PORT: parseInt(envFile.DB_PORT || process.env.DB_PORT || '5432'),
+    DB_USERNAME: envFile.DB_USERNAME || process.env.DB_USERNAME || 'postgres',
+    DB_PASSWORD: envFile.DB_PASSWORD || process.env.DB_PASSWORD || 'password',
+    DB_DATABASE: envFile.DB_DATABASE || process.env.DB_DATABASE || (isDev ? 'terminal_dev' : 'terminal_db'),
     JWT_SECRET: envFile.JWT_SECRET || process.env.JWT_SECRET || 'your-secret-key-change-in-production',
     JWT_EXPIRES_IN: envFile.JWT_EXPIRES_IN || process.env.JWT_EXPIRES_IN || '7d',
     PORT: parseInt(envFile.PORT || process.env.PORT || '3000'),

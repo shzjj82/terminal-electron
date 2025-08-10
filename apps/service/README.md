@@ -120,24 +120,22 @@ pnpm install
 
 ### 2. 环境配置
 
-复制环境变量文件：
+环境变量文件位于项目根目录的 `env/` 目录：
 
-```bash
-cp env.example .env
-```
+- `env/development.env` - 开发环境配置
+- `env/production.env` - 生产环境配置
 
-编辑 `.env` 文件，配置必要的环境变量：
+### 3. 数据库配置
 
-```env
-# 数据库配置
-DB_PATH=./data/app.db
+在开发环境下，应用会自动：
+- 检查PostgreSQL连接
+- 创建数据库（如果不存在）
+- 创建所需的表结构
 
-# JWT配置
-JWT_SECRET=your-super-secret-jwt-key-here
-
-# 服务器配置
-PORT=3000
-```
+**注意**: 
+- 确保PostgreSQL服务正在运行
+- 不要在此目录下创建 `.env` 文件，避免配置冲突
+- 配置会自动从 `env/development.env` 或 `env/production.env` 加载
 
 ### 3. 启动服务
 
@@ -341,7 +339,7 @@ Content-Type: application/json
 
 ### 数据库
 
-使用SQLite作为数据库，数据文件存储在 `./data/app.db`。
+使用PostgreSQL作为数据库，支持高并发和复杂查询。TypeORM会自动创建所需的表结构。
 
 ### 认证
 
@@ -358,7 +356,12 @@ Content-Type: application/json
 确保设置正确的环境变量：
 
 - `JWT_SECRET`: JWT签名密钥
-- `DB_PATH`: 数据库文件路径
+- `DB_TYPE`: 数据库类型 (postgres)
+- `DB_HOST`: 数据库主机地址
+- `DB_PORT`: 数据库端口
+- `DB_USERNAME`: 数据库用户名
+- `DB_PASSWORD`: 数据库密码
+- `DB_DATABASE`: 数据库名称
 - `PORT`: 服务端口
 
 ### 生产环境
