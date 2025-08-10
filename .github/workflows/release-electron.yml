@@ -44,14 +44,19 @@ jobs:
             echo "Loading production environment variables..."
             # 读取环境变量文件并设置到 GitHub Actions 环境
             while IFS= read -r line; do
-              # 跳过注释和空行
-              if [[ ! "$line" =~ ^# ]] && [[ -n "$line" ]]; then
+              # 去除行首行尾的空白字符
+              line=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+              # 跳过注释、空行和只包含等号的行
+              if [[ ! "$line" =~ ^# ]] && [[ -n "$line" ]] && [[ "$line" =~ = ]]; then
                 # 提取变量名和值
-                var_name=$(echo "$line" | cut -d'=' -f1)
-                var_value=$(echo "$line" | cut -d'=' -f2-)
-                # 设置到 GitHub Actions 环境
-                echo "${var_name}=${var_value}" >> $GITHUB_ENV
-                echo "Set ${var_name}=${var_value}"
+                var_name=$(echo "$line" | cut -d'=' -f1 | sed 's/[[:space:]]*$//')
+                var_value=$(echo "$line" | cut -d'=' -f2- | sed 's/^[[:space:]]*//')
+                # 确保变量名不为空且不包含空格
+                if [[ -n "$var_name" ]] && [[ ! "$var_name" =~ [[:space:]] ]]; then
+                  # 设置到 GitHub Actions 环境
+                  echo "${var_name}=${var_value}" >> $GITHUB_ENV
+                  echo "Set ${var_name}=${var_value}"
+                fi
               fi
             done < env/production.env
             echo "Production environment variables loaded"
