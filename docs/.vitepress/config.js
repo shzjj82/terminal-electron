@@ -4,15 +4,14 @@ import { defineConfig } from 'vitepress'
 const RELEASE_TAG = process.env.VITE_RELEASE_TAG || '';
 
 export default defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/terminal-electron/' : '/',
+  base: '/',
   title: 'Terminal Electron',
   description: '基于 Electron 的 SSH 终端应用',
   lang: 'zh-CN',
   ignoreDeadLinks: true,
   publicDir: 'public',
-  vite: {
-    assetsInclude: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.svg', '**/*.ico'],
-  },
+  outDir: 'dist',
+
   head: [
     [
       'script',

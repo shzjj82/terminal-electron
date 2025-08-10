@@ -8,7 +8,7 @@
   <div class="download-card">
     <div class="platform-info">
       <div class="platform-icon">
-        <img id="platform-icon" src="/images/windows.png" alt="检测中..." width="48" height="48" />
+        <img id="platform-icon" src="/images/windows.png" alt="检测中..." width="48" height="48" style="width: 48px; height: 48px;" />
       </div>
       <div class="platform-details">
         <h3 id="platform-name">检测中...</h3>

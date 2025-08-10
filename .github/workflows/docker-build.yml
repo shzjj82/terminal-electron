@@ -51,47 +51,7 @@ jobs:
             type=raw,value=latest,enable={{is_default_branch}}
             type=raw,value=${{ github.event.inputs.image_tag }},enable=${{ github.event.inputs.image_tag != '' }}
 
-      - name: Build and push Docker image (Attempt 1)
-        id: build-attempt-1
-        uses: docker/build-push-action@v5
-        continue-on-error: true
-        with:
-          context: ./apps/service
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          platforms: linux/amd64,linux/arm64
-          build-args: |
-            NODE_ENV=production
-            BUILD_DATE=${{ github.event.head_commit.timestamp }}
-            VCS_REF=${{ github.sha }}
-          provenance: false
-          sbom: false
-
-      - name: Build and push Docker image (Attempt 2)
-        if: steps.build-attempt-1.outcome == 'failure'
-        id: build-attempt-2
-        uses: docker/build-push-action@v5
-        continue-on-error: true
-        with:
-          context: ./apps/service
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          platforms: linux/amd64,linux/arm64
-          build-args: |
-            NODE_ENV=production
-            BUILD_DATE=${{ github.event.head_commit.timestamp }}
-            VCS_REF=${{ github.sha }}
-          provenance: false
-          sbom: false
-
-      - name: Build and push Docker image (Final Attempt)
-        if: steps.build-attempt-1.outcome == 'failure' && steps.build-attempt-2.outcome == 'failure'
+      - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./apps/service
@@ -107,21 +67,12 @@ jobs:
             VCS_REF=${{ github.sha }}
           provenance: false
           sbom: false
+          push-filter: "true"
 
       - name: Output image info
         run: |
-          if [ "${{ steps.build-attempt-1.outcome }}" == "success" ]; then
-            echo "✅ Successfully built and pushed images on first attempt:"
-            echo "${{ steps.meta.outputs.tags }}"
-          elif [ "${{ steps.build-attempt-2.outcome }}" == "success" ]; then
-            echo "✅ Successfully built and pushed images on second attempt:"
-            echo "${{ steps.meta.outputs.tags }}"
-          elif [ "${{ steps.build-attempt-1.outcome }}" == "failure" ] && [ "${{ steps.build-attempt-2.outcome }}" == "failure" ]; then
-            echo "⚠️  Build failed on first two attempts, trying final attempt..."
-          else
-            echo "✅ Successfully built and pushed images:"
-            echo "${{ steps.meta.outputs.tags }}"
-          fi
+          echo "✅ Successfully built and pushed images:"
+          echo "${{ steps.meta.outputs.tags }}"
           echo ""
           echo "📦 Image details:"
           echo "Registry: ${{ env.REGISTRY }}"
