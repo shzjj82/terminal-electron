@@ -38,6 +38,7 @@ jobs:
         run: yarn install --frozen-lockfile || true
 
       - name: Load environment variables
+        shell: bash
         run: |
           if [ -f "env/production.env" ]; then
             echo "Loading production environment variables..."
@@ -107,12 +108,14 @@ jobs:
           path: dist-release
 
       - name: Display downloaded files
+        shell: bash
         run: |
           ls -al dist-release || true
           echo "Will upload these:" 
           find dist-release -type f \( -name "*.dmg" -o -name "*.exe" \) -print || true
 
       - name: Filter specific files
+        shell: bash
         run: |
           mkdir -p filtered-release
           # 显示所有可用文件
