@@ -7,9 +7,6 @@
 <div class="quick-download-section">
   <div class="download-card">
     <div class="platform-info">
-      <div class="platform-icon">
-        <img id="platform-icon" src="/images/windows.png" alt="检测中..." width="48" height="48" style="width: 48px; height: 48px;" />
-      </div>
       <div class="platform-details">
         <h3 id="platform-name">检测中...</h3>
         <p id="platform-desc">正在检测您的设备...</p>
