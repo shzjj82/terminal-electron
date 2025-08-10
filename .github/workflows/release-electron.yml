@@ -37,14 +37,23 @@ jobs:
         working-directory: apps/app
         run: yarn install --frozen-lockfile || true
 
-      - name: Set CI env
-        run: echo "CI=true" >> $GITHUB_ENV
+      - name: Load environment variables
+        run: |
+          if [ -f "env/production.env" ]; then
+            echo "Loading production environment variables..."
+            export $(cat env/production.env | grep -v '^#' | xargs)
+            echo "Environment variables loaded"
+          else
+            echo "Warning: env/production.env not found, using defaults"
+          fi
 
       - name: Build on macOS (arm64 + x64)
         if: matrix.os == 'macos-latest'
         working-directory: apps/app
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: production
+          CI: true
         run: |
           yarn build:mac:arm64
           yarn build:mac:x64
@@ -55,6 +64,8 @@ jobs:
         working-directory: apps/app
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_ENV: production
+          CI: true
         run: |
           yarn build:win:x64
           yarn build:win:arm64

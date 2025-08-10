@@ -42,3 +42,4 @@ npmRebuild: false
 publish: []
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
+icon: resources/icon.png
