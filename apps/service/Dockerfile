@@ -9,7 +9,7 @@ COPY package*.json ./
 COPY yarn.lock ./
 
 # 安装依赖
-RUN yarn install --frozen-lockfile --production=false
+RUN yarn install --production=false
 
 # 构建阶段
 FROM base AS builder
@@ -35,7 +35,7 @@ COPY package*.json ./
 COPY yarn.lock ./
 
 # 安装生产依赖
-RUN yarn install --frozen-lockfile --production=true && yarn cache clean
+RUN yarn install --production=true && yarn cache clean
 
 # 从构建阶段复制构建产物
 COPY --from=builder --chown=nestjs:nodejs /app/dist ./dist
